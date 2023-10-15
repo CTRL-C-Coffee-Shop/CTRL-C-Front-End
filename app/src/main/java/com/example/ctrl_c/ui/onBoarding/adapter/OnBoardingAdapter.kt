@@ -22,9 +22,13 @@ class OnBoardingAdapter : RecyclerView.Adapter<OnBoardingPager>() {
             with(holder) {
                 if (position == 0) {
                     bindingDesign.tvTitle.text = context.getString(R.string.title_onboarding_1)
+                    bindingDesign.tvDescription.text =
+                        context.getString(R.string.description_onboarding_1)
                     bindingDesign.ivIllustration.setImageResource(R.drawable.on_boarding1_image)
                 } else {
                     bindingDesign.tvTitle.text = context.getString(R.string.title_onboarding_2)
+                    bindingDesign.tvDescription.text =
+                        context.getString(R.string.description_onboarding_2)
                     bindingDesign.ivIllustration.setImageResource(R.drawable.on_boarding2_image)
                 }
             }

@@ -7,7 +7,7 @@
     <string name="get_started_title">Get Started</string>
     <string name="description_onboarding_1"> Your daily dose of caffeine, just a tap away!</string>
     <string name="description_onboarding_2"> The Best premium Quality Coffee, made by the love of our Baristas!</string>
-    <string name="login_title">Hello, let\\\'s sign in</string>
+    <string name="login_title">Hello, let\'s sign in</string>
     <string name="signup">Sign Up\n</string>
     <string name="new_to_ctrlC">New to CTRL+C?</string>
     <string name="email">Email</string>
@@ -15,5 +15,5 @@
     <string name="message_login">Your coffee, your choice, your convenience.</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="login">Login</string>
+    <string name="login">Sign in</string>
 </resources>

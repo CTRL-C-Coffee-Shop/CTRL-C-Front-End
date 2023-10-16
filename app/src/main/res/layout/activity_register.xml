@@ -6,4 +6,151 @@
     android:layout_height="match_parent"
     tools:context=".ui.authentication.register.RegisterActivity">
 
+
+    <ImageView
+        android:id="@+id/iv_signup_illustration"
+        android:layout_width="200dp"
+        android:alpha="0"
+        tools:alpha="1"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:src="@drawable/on_boarding1_image2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:textSize="@dimen/text_size_20"
+        android:text="@string/signup_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_signup_illustration"
+        tools:alpha="1" />
+
+    <TextView
+        android:id="@+id/tv_signup_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_4"
+        android:textSize="@dimen/text_size_12"
+        android:text="@string/signup_message"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup"
+        tools:alpha="1" />
+
+    <EditText
+        android:id="@+id/et_Fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_18"
+        android:autofillHints="@string/fullname"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="@dimen/spacing_6"
+        android:hint="@string/fullname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_msg"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_18"
+        android:autofillHints="@string/fullname"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="@dimen/spacing_6"
+        android:hint="@string/nickname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_Fullname"
+        android:inputType="text" />
+
+    <com.example.ctrl_c.customviews.EmailEditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_nickname" />
+
+    <com.example.ctrl_c.customviews.PasswordEditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:autofillHints="@string/password"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="@dimen/spacing_6"
+        android:hint="@string/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_email" />
+
+    <com.example.ctrl_c.customviews.PasswordEditText
+        android:id="@+id/et_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:hint="@string/confirm_password"
+        android:autofillHints="@string/confirm_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:passwordToggleEnabled="true" />
+
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_32"
+        android:layout_marginTop="@dimen/spacing_18"
+        android:padding="@dimen/spacing_12"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="@string/signup"
+        android:backgroundTint="@color/matcha_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_confirm_password" />
+
+    <LinearLayout
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_8"
+        android:padding="@dimen/spacing_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/already_have_an_account"
+            android:textSize="@dimen/text_size_12"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_6"
+            android:textSize="@dimen/text_size_12"
+            android:text="@string/login"
+            android:textColor="@color/pink_500" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

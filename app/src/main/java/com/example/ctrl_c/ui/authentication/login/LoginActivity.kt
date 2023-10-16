@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.ctrl_c.databinding.ActivityLoginBinding
+import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +26,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.btnSignUp.setOnClickListener{
+        binding.btnSignUp.setOnClickListener {
             navigateToRegisterActivity()
+        }
+
+        binding.btnLogin.setOnClickListener {
+            //disini harusnya manggil API tapi untuk skarang dipakein loading animation dlu
+            loadingHandler(true)
         }
     }
 
@@ -67,5 +73,13 @@ class LoginActivity : AppCompatActivity() {
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()
+    }
+
+    override fun loadingHandler(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingAnimation.visibility = View.VISIBLE
+        } else {
+            binding.loadingAnimation.visibility = View.GONE
+        }
     }
 }

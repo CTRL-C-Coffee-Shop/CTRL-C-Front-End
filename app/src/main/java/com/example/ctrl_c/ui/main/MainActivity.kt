@@ -1,4 +1,4 @@
-package com.example.ctrl_c.ui
+package com.example.ctrl_c.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.authentication.login.LoginActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_animation"
+        android:layout_width="160dp"
+        android:layout_height="151dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.636"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_animation"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/iv_login_illustration"
@@ -123,8 +138,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_6"
             android:text="@string/signup"
-            android:textSize="@dimen/text_size_12"
-            android:textColor="@color/pink_500"/>
+            android:textColor="@color/pink_500"
+            android:textSize="@dimen/text_size_12" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

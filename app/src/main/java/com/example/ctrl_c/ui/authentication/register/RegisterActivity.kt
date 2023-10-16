@@ -8,9 +8,10 @@ import android.os.Bundle
 import android.view.View
 import com.example.ctrl_c.R
 import com.example.ctrl_c.databinding.ActivityRegisterBinding
+import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var binding: ActivityRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +24,13 @@ class RegisterActivity : AppCompatActivity() {
         playAnimation()
     }
 
-    private fun setupAction(){
-        binding.btnLogin.setOnClickListener{
+    private fun setupAction() {
+        binding.btnSignUp.setOnClickListener {
+            //nanti disini manggil API dlu tp buat sekarang pakein animasi loading dlu
+            loadingHandler(true)
+        }
+
+        binding.btnLogin.setOnClickListener {
             navigateToSignInActivity()
         }
     }
@@ -69,6 +75,14 @@ class RegisterActivity : AppCompatActivity() {
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()
+    }
+
+    override fun loadingHandler(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingAnimation.visibility = View.VISIBLE
+        } else {
+            binding.loadingAnimation.visibility = View.GONE
+        }
     }
 
 

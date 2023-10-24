@@ -22,4 +22,12 @@
     <string name="nickname">Nickname</string>
     <string name="confirm_password">Confirm Password\n</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="username">Ignatius</string>
+    <string name="order_now">Order Now</string>
+    <string name="vouchers">Vouchers</string>
+    <string name="pick_up_title">Pick Up</string>
+    <string name="pick_up_desc">Self Pick up without queueing</string>
+    <string name="delivery_title">Delivery</string>
+    <string name="delivery_desc">Order delivered to your location</string>
+    <string name="welcome_title">Welcome!</string>
 </resources>

@@ -24,6 +24,11 @@
     <dimen name="spacing_100">100dp</dimen>
     <dimen name="spacing_108">108dp</dimen>
     <dimen name="spacing_128">128dp</dimen>
+    <dimen name="spacing_140">140dp</dimen>
+    <dimen name="spacing_148">148dp</dimen>
+    <dimen name="spacing_154">154dp</dimen>
+    <dimen name="spacing_160">160dp</dimen>
+    <dimen name="spacing_180">180dp</dimen>
 
 
     <dimen name="text_size_2">2sp</dimen>

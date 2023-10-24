@@ -9,6 +9,7 @@ import android.view.View
 import com.example.ctrl_c.databinding.ActivityLoginBinding
 import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
+import com.example.ctrl_c.ui.main.HomeActivity
 
 
 class LoginActivity : AppCompatActivity(), LoadingHandler {
@@ -39,6 +40,12 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
     private fun navigateToRegisterActivity() {
         //intent to Register activity.
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToMainActivity() {
+        //intent to Main activity / Home Page.
+        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
         startActivity(intent)
     }
 

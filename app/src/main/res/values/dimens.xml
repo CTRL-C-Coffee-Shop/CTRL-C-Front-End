@@ -29,7 +29,12 @@
     <dimen name="spacing_154">154dp</dimen>
     <dimen name="spacing_160">160dp</dimen>
     <dimen name="spacing_180">180dp</dimen>
-
+    <dimen name="spacing_240">240dp</dimen>
+    <dimen name="spacing_300">300dp</dimen>
+    <dimen name="spacing_250">250dp</dimen>
+    <dimen name="spacing_280">280dp</dimen>
+    <dimen name="spacing_295">295dp</dimen>
+    <dimen name="spacing_299">299dp</dimen>
 
     <dimen name="text_size_2">2sp</dimen>
     <dimen name="text_size_4">4sp</dimen>
@@ -46,4 +51,6 @@
     <dimen name="text_size_32">32sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+
+
 </resources>

@@ -3,9 +3,9 @@ package com.example.ctrl_c.ui.authentication.login
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ctrl_c.databinding.ActivityLoginBinding
 import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
 
         binding.btnLogin.setOnClickListener {
             //disini harusnya manggil API tapi untuk skarang dipakein loading animation dlu
-            loadingHandler(true)
+            navigateToMainActivity()
         }
     }
 
@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
     private fun navigateToMainActivity() {
         //intent to Main activity / Home Page.
         val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 

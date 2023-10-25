@@ -30,4 +30,13 @@
     <string name="delivery_title">Delivery</string>
     <string name="delivery_desc">Order delivered to your location</string>
     <string name="welcome_title">Welcome!</string>
+    <string name="order">Pickup Order</string>
+    <string name="store_location">Location</string>
+    <string name="tv_self_pickup">Self Pick Up</string>
+    <string name="coffee">Coffee</string>
+    <string name="bundle">Bundle</string>
+    <string name="signature">Signature</string>
+    <string name="tea">Tea</string>
+    <string name="ice_blended">Ice-Blended</string>
+    <string name="snacks">Snacks</string>
 </resources>

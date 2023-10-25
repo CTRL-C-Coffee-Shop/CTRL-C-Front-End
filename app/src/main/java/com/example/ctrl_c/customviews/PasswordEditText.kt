@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.example.ctrl_c.R
 
-class PasswordEditText: AppCompatEditText {
+class PasswordEditText : AppCompatEditText {
     private lateinit var passwordIconDrawable: Drawable
     private lateinit var eyeOnDrawable: Drawable
     private lateinit var eyeOffDrawable: Drawable

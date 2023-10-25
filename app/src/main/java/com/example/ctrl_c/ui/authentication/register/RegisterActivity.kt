@@ -3,10 +3,9 @@ package com.example.ctrl_c.ui.authentication.register
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.ctrl_c.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ctrl_c.databinding.ActivityRegisterBinding
 import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.ui.authentication.login.LoginActivity

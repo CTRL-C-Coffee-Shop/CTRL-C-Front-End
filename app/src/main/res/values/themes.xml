@@ -14,10 +14,7 @@
     </style>
 
     <style name="textField_rounded" parent="">
-        <item name="cornerFamily">rounded
-        </item>
-        <item name="cornerSize">@dimen/spacing_8</item>
-        <item name="cornerSizeTopLeft">@dimen/spacing_16</item>
-        <item name="cornerSizeTopRight">@dimen/spacing_16</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/spacing_16</item>
     </style>
 </resources>

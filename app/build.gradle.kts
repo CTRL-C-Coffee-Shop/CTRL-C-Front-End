@@ -51,4 +51,7 @@ dependencies {
     //animation
     implementation("com.airbnb.android:lottie:3.4.0")
 
+    //sticky header
+    implementation ("com.github.shuhart:stickyheader:1.1.0")
+
 }

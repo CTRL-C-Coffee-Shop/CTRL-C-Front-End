@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/order_background"
     tools:context=".ui.order.pickup.SelfPickUpOrderActivity">
 
     <LinearLayout
@@ -25,6 +26,13 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_24"
             android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description_self_pickup"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_20"
+            android:textStyle="normal" />
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="@+id/linear_layout_part"
         app:layout_constraintStart_toStartOf="@+id/linear_layout_part"
         app:layout_constraintTop_toTopOf="@+id/linear_layout_part"
-        app:layout_constraintVertical_bias="0.16"
+        app:layout_constraintVertical_bias="0.18"
         app:shapeAppearanceOverlay="@style/textField_rounded">
 
         <AutoCompleteTextView

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/authentication_background"
     tools:context=".ui.authentication.register.RegisterActivity">
 
 
@@ -74,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_signup_msg" />
-    
+
     <com.example.ctrl_c.customviews.EmailEditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"

@@ -33,8 +33,8 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
 
         binding.btnLogin.setOnClickListener {
             //disini harusnya manggil API tapi untuk skarang dipakein loading animation dlu
-//            navigateToMainActivity()
-            loadingHandler(true)
+            navigateToMainActivity()
+//            loadingHandler(true)
         }
     }
 

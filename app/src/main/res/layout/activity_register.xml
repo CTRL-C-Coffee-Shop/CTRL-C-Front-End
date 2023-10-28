@@ -74,22 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_signup_msg" />
-
-    <EditText
-        android:id="@+id/et_nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_32"
-        android:layout_marginTop="@dimen/spacing_18"
-        android:autofillHints="@string/fullname"
-        android:drawableStart="@drawable/ic_account"
-        android:drawablePadding="@dimen/spacing_6"
-        android:hint="@string/nickname"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_Fullname" />
-
+    
     <com.example.ctrl_c.customviews.EmailEditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
@@ -99,7 +84,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nickname" />
+        app:layout_constraintTop_toBottomOf="@+id/et_Fullname" />
 
     <com.example.ctrl_c.customviews.PasswordEditText
         android:id="@+id/et_password"

@@ -51,6 +51,7 @@
     <dimen name="text_size_32">32sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="spacing_500">500dp</dimen>
 
 
 </resources>

@@ -46,6 +46,7 @@
         app:layout_constraintVertical_bias="0.16"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
+        app:startIconDrawable="@drawable/baseline_store_24"
         app:shapeAppearanceOverlay="@style/textField_rounded">
 
         <AutoCompleteTextView

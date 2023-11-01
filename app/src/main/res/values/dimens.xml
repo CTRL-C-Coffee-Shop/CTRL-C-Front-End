@@ -28,7 +28,11 @@
     <dimen name="spacing_148">148dp</dimen>
     <dimen name="spacing_154">154dp</dimen>
     <dimen name="spacing_160">160dp</dimen>
+    <dimen name="spacing_170">170dp</dimen>
     <dimen name="spacing_180">180dp</dimen>
+    <dimen name="spacing_200">200dp</dimen>
+    <dimen name="spacing_204">204dp</dimen>
+    <dimen name="spacing_220">220dp</dimen>
     <dimen name="spacing_240">240dp</dimen>
     <dimen name="spacing_300">300dp</dimen>
     <dimen name="spacing_250">250dp</dimen>
@@ -52,6 +56,7 @@
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="spacing_500">500dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 
 </resources>

@@ -84,6 +84,7 @@
         android:layout_marginTop="64dp"
         android:text="@string/order_now"
         android:textSize="@dimen/text_size_24"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
@@ -101,7 +102,7 @@
             android:layout_width="365dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/border_pick_up"
             android:outlineProvider="bounds"
@@ -120,6 +121,7 @@
             android:layout_marginStart="200dp"
             android:layout_marginTop="24dp"
             android:text="@string/pick_up_title"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_28"
             android:textStyle="bold" />
 
@@ -130,12 +132,13 @@
             android:layout_marginTop="68dp"
             android:text="@string/pick_up_desc"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_18" />
 
         <ImageButton
             android:layout_width="365dp"
             android:layout_height="100dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="140dp"
             android:background="@drawable/border_delivery"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -153,6 +156,7 @@
             android:layout_marginStart="200dp"
             android:layout_marginTop="148dp"
             android:text="@string/delivery_title"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_28"
             android:textStyle="bold" />
 
@@ -163,6 +167,7 @@
             android:layout_marginTop="192dp"
             android:text="@string/delivery_desc"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_18" />
     </RelativeLayout>
 

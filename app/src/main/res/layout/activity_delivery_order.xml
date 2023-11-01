@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/order_background"
-    tools:context=".ui.order.pickup.SelfPickUpOrderActivity">
+    tools:context=".ui.order.delivery.DeliveryOrderActivity">
 
     <LinearLayout
         android:id="@+id/linear_layout_part"

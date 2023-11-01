@@ -133,6 +133,7 @@
             android:textSize="@dimen/text_size_18" />
 
         <ImageButton
+            android:id="@+id/delivery"
             android:layout_width="365dp"
             android:layout_height="100dp"
             android:layout_marginStart="24dp"

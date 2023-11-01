@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.ctrl_c.databinding.FragmentHomeBinding
+import com.example.ctrl_c.ui.order.delivery.DeliveryOrderActivity
 import com.example.ctrl_c.ui.order.pickup.SelfPickUpOrderActivity
 
 class HomeFragment : Fragment() {
@@ -31,10 +32,17 @@ class HomeFragment : Fragment() {
         binding.pickUp.setOnClickListener {
             navigateToSelfPickUpOrderActivity()
         }
+        binding.delivery.setOnClickListener{
+            navigateToDeliveryOrderActivity()
+        }
     }
 
     private fun navigateToSelfPickUpOrderActivity() {
         val intent = Intent(activity, SelfPickUpOrderActivity::class.java)
+        startActivity(intent)
+    }
+    private fun navigateToDeliveryOrderActivity() {
+        val intent = Intent(activity, DeliveryOrderActivity::class.java)
         startActivity(intent)
     }
     companion object {

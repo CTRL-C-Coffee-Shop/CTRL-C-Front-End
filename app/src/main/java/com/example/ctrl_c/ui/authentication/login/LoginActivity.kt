@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ctrl_c.databinding.ActivityLoginBinding
 import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
-import com.example.ctrl_c.ui.main.HomeActivity
+import com.example.ctrl_c.ui.main.MainActivity
 
 
 class LoginActivity : AppCompatActivity(), LoadingHandler {
@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
 
     private fun navigateToMainActivity() {
         //intent to Main activity / Home Page.
-        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }

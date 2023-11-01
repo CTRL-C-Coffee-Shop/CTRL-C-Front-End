@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/order_background"
-    tools:context=".ui.order.delivery.DeliveryOrderActivity">
+    tools:context=".ui.order.pickup.SelfPickUpOrderActivity">
 
     <LinearLayout
         android:id="@+id/linear_layout_part"
@@ -26,6 +26,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_24"
             android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,26 +34,48 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_20"
             android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/spacing_300"
+        android:layout_height="@dimen/spacing_56"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/beige"
+            android:drawableLeft="@drawable/baseline_location_on_24"
+            android:text="@string/choose_your_location"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_size_18"
+            app:shapeAppearanceOverlay="@style/textField_rounded" />
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="@dimen/spacing_300"
         android:layout_height="@dimen/spacing_56"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linear_layout_part"
         app:layout_constraintStart_toStartOf="@+id/linear_layout_part"
         app:layout_constraintTop_toTopOf="@+id/linear_layout_part"
-        app:layout_constraintVertical_bias="0.16"
-        app:boxStrokeWidth="0dp"
-        app:startIconDrawable="@drawable/baseline_store_24"
-        app:boxStrokeWidthFocused="0dp"
-        app:shapeAppearanceOverlay="@style/textField_rounded">
+        app:layout_constraintVertical_bias="0.23"
+        app:shapeAppearanceOverlay="@style/textField_rounded"
+        app:startIconDrawable="@drawable/baseline_store_24">
 
         <AutoCompleteTextView
             android:id="@+id/auto_complete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/beige"
             android:hint="@string/store_location"
             android:inputType="none"
             android:textStyle="bold" />
@@ -69,7 +92,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/linear_layout_part"
         app:layout_constraintTop_toTopOf="@+id/linear_layout_part"
-        app:layout_constraintVertical_bias="0.239">
+        app:layout_constraintVertical_bias="0.3">
 
         <com.google.android.material.chip.ChipGroup
             android:layout_width="match_parent"
@@ -125,12 +148,11 @@
         android:id="@+id/rv_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_5"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="@+id/linear_layout_part"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
-        tools:listitem="@layout/menu_list"
-        />
+        tools:listitem="@layout/menu_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

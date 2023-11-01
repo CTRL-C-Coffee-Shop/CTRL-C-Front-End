@@ -43,4 +43,6 @@
     <string name="default_product_name">Es Kopi Susu Gula Aren</string>
     <string name="default_product_description">Es Kopi yang dicampur dengan susu dan gula aren.</string>
     <string name="default_product_price">Rp. 25.000</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

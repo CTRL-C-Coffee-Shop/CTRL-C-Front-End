@@ -39,7 +39,6 @@
     <dimen name="spacing_280">280dp</dimen>
     <dimen name="spacing_295">295dp</dimen>
     <dimen name="spacing_299">299dp</dimen>
-    <dimen name="spacing_500">500dp</dimen>
     <dimen name="spacing_5">5dp</dimen>
 
     <dimen name="text_size_2">2sp</dimen>

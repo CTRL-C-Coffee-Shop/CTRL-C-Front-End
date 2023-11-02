@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -24,11 +25,14 @@ class DeliveryOrderActivity : AppCompatActivity() {
     private val PERMISSIONS_REQUEST_CODE = 123
 
 
-    // Initialize the Places SDK
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDeliveryOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize the Places SDK
+        Places.initialize(applicationContext, getString(R.string.google_maps_api_key))
 
         supportActionBar?.hide()
         if (checkPermissions()) {
@@ -37,7 +41,7 @@ class DeliveryOrderActivity : AppCompatActivity() {
             requestPermissions()
         }
 
-        Places.initialize(applicationContext, getString(R.string.google_maps_api_key))
+
 
         setupAction()
     }
@@ -111,6 +115,7 @@ class DeliveryOrderActivity : AppCompatActivity() {
                     val status = Autocomplete.getStatusFromIntent(data!!)
                     Toast.makeText(this, "Error: ${status.statusMessage}", Toast.LENGTH_SHORT)
                         .show()
+                    Log.d("ERRORROOOR","Error: ${status.statusMessage}")
                 }
 
                 RESULT_CANCELED -> {

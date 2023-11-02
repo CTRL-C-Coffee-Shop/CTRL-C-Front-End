@@ -54,4 +54,9 @@ dependencies {
     //sticky header
     implementation ("com.github.shuhart:stickyheader:1.1.0")
 
+    //location
+    implementation ("com.google.android.gms:play-services-maps:18.0.0")
+    implementation ("com.google.android.libraries.places:places:2.5.0")
+
+
 }

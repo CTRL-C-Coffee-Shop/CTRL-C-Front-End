@@ -49,7 +49,7 @@
             android:id="@+id/button_choose_location"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/beige"
+            android:backgroundTint="@color/white_gray"
             android:drawableLeft="@drawable/baseline_location_on_24"
             android:text="@string/choose_your_location"
             android:textColor="@color/dark_gray"
@@ -69,6 +69,7 @@
         app:layout_constraintStart_toStartOf="@+id/linear_layout_part"
         app:layout_constraintTop_toTopOf="@+id/linear_layout_part"
         app:layout_constraintVertical_bias="0.23"
+        android:textColor="@color/dark_gray"
         app:shapeAppearanceOverlay="@style/textField_rounded"
         app:startIconDrawable="@drawable/baseline_store_24">
 
@@ -76,8 +77,9 @@
             android:id="@+id/auto_complete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/beige"
             android:hint="@string/store_location"
+            android:backgroundTint="@color/white_gray"
+            android:textColor="@color/dark_gray"
             android:inputType="none"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>

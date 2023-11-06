@@ -144,4 +144,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description_delivery">What coffe would you like to order?</string>
     <string name="choose_your_location">Choose your location</string>
+    <string name="menu_name">Arabica</string>
+    <string name="menu_desc">"Nikmatnya kopi arabica sebagai kopi pendamping di pagi hari "</string>
+    <string name="menu_price">Rp 25.000</string>
+    <string name="pilihan_tersedia_text">Pilihan Tersedia</string>
+    <string name="ukuran_cup_text">Ukuran Cup</string>
+    <string name="regular_size_text">Regular</string>
+    <string name="large_size_text">Large</string>
+    <string name="menu_qty">2</string>
+    <string name="input_menu_price">Tambah Rp 50.000</string>
+    <string name="iced_option">Iced</string>
+    <string name="hot_option">Hot</string>
+    <string name="sweetness_level">Tingkat Kemanisan</string>
+    <string name="normal_sugar">Normal</string>
+    <string name="less_sugar">Gula Dikurangi</string>
 </resources>

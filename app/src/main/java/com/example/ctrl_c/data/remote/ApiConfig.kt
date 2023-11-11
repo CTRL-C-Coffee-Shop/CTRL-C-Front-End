@@ -1,7 +1,7 @@
 package com.example.ctrl_c.data.remote
 
 
-import com.shuhart.stickyheader.BuildConfig
+import com.example.ctrl_c.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

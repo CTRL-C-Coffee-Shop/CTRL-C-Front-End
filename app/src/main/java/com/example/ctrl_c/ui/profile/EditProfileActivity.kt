@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.ctrl_c.R
 
 class EditProfileActivity : AppCompatActivity() {
+//    Check
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)

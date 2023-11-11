@@ -47,7 +47,7 @@
             android:layout_marginStart="@dimen/spacing_32"
             android:layout_marginTop="@dimen/spacing_36"
             android:src="@drawable/background1"
-            app:civ_border_color="#FF000000"
+            app:civ_border_color="@color/black"
             app:civ_border_width="2dp" />
 
         <TextView

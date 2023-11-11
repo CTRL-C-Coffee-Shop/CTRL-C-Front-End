@@ -56,4 +56,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description_delivery">What coffe would you like to order?</string>
     <string name="choose_your_location">Get your location</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_profile_name_temp">Ignatius</string>
+    <string name="profile_email">ctrlc@gmail.com</string>
+    <string name="profile_title">Account</string>
+    <string name="profile_name">Ignatius</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -40,6 +40,7 @@ android {
 
 dependencies {
 
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
@@ -52,11 +53,10 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.0.0")
 
     //sticky header
-    implementation ("com.github.shuhart:stickyheader:1.1.0")
+    implementation("com.github.shuhart:stickyheader:1.1.0")
 
     //location
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
-
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
 
 }

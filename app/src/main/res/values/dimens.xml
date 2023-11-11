@@ -11,6 +11,7 @@
     <dimen name="spacing_24">24dp</dimen>
     <dimen name="spacing_28">28dp</dimen>
     <dimen name="spacing_32">32dp</dimen>
+    <dimen name="spacing_36">36dp</dimen>
     <dimen name="spacing_40">40dp</dimen>
     <dimen name="spacing_48">48dp</dimen>
     <dimen name="spacing_56">56dp</dimen>
@@ -23,6 +24,7 @@
     <dimen name="spacing_96">96dp</dimen>
     <dimen name="spacing_100">100dp</dimen>
     <dimen name="spacing_108">108dp</dimen>
+    <dimen name="spacing_114">114dp</dimen>
     <dimen name="spacing_128">128dp</dimen>
     <dimen name="spacing_140">140dp</dimen>
     <dimen name="spacing_148">148dp</dimen>
@@ -56,8 +58,10 @@
     <dimen name="text_size_32">32sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="spacing_500">500dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
 
 
 

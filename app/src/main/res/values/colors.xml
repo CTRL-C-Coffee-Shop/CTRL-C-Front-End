@@ -26,7 +26,7 @@
     <color name="white_mode">#FDFFFD</color>
     <color name="light_background">#F4F8FB</color>
 
-    //error color
+<!--    Error color-->
     <color name="pink_500">#F43F5E</color>
     <color name="white_gray">#EAE5EA</color>
 

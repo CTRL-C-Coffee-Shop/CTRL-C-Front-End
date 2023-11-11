@@ -51,6 +51,7 @@
             app:civ_border_width="2dp" />
 
         <TextView
+            android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_114"
@@ -61,7 +62,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@id/profile_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_114"

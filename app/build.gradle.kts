@@ -51,6 +51,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+    implementation ("androidx.activity:activity-ktx:1.8.0")
+
 
     //animation
     implementation("com.airbnb.android:lottie:6.0.0")
@@ -78,5 +80,9 @@ dependencies {
     //livedata
     implementation ("androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    //View Model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
 
 }

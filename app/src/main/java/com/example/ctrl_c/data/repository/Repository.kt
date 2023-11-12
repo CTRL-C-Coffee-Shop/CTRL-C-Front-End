@@ -14,10 +14,7 @@ import com.example.ctrl_c.model.result.Result.Success
 class Repository(private val pref: UserPreference, private val apiService: ApiService) {
 
     fun register(
-        fullname: String,
-        email: String,
-        password: String,
-        accessType: Int
+        fullname: String, email: String, password: String, accessType: Int
     ): LiveData<Result<GeneralResponse>> = liveData {
         emit(Loading)
         try {
@@ -32,5 +29,15 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
         } catch (e: Exception) {
             emit(Error(e.message.toString()))
         }
+    }
+
+    companion object {
+        @Volatile
+        private var instance: Repository? = null
+        fun getInstance(
+            preferences: UserPreference, apiService: ApiService
+        ): Repository = instance ?: synchronized(this) {
+            instance ?: Repository(preferences, apiService)
+        }.also { instance = it }
     }
 }

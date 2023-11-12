@@ -75,6 +75,8 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.15.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.13.1")
 
-
+    //livedata
+    implementation ("androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
 }

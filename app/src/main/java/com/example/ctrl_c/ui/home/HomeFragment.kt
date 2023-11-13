@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
         binding.pickUp.setOnClickListener {
             navigateToSelfPickUpOrderActivity()
         }
-        binding.delivery.setOnClickListener{
+        binding.delivery.setOnClickListener {
             navigateToDeliveryOrderActivity()
         }
     }
@@ -41,10 +41,12 @@ class HomeFragment : Fragment() {
         val intent = Intent(activity, SelfPickUpOrderActivity::class.java)
         startActivity(intent)
     }
+
     private fun navigateToDeliveryOrderActivity() {
         val intent = Intent(activity, DeliveryOrderActivity::class.java)
         startActivity(intent)
     }
+
     companion object {
 
     }

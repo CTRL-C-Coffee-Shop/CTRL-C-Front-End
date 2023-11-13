@@ -15,6 +15,11 @@ class UserPreference(context: Context) {
         edit.apply()
     }
 
+    fun clearPreferences() {
+        preferences.edit().clear().apply()
+    }
+
+
     companion object {
         private const val TOKEN = "token"
     }

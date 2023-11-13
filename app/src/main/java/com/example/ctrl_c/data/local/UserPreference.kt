@@ -15,6 +15,11 @@ class UserPreference(context: Context) {
         edit.apply()
     }
 
+    fun saveName(name:String){
+        val edit = preferences.edit()
+        edit.putString(NAME,name)
+        edit.apply()
+    }
     fun clearPreferences() {
         preferences.edit().clear().apply()
     }
@@ -22,5 +27,6 @@ class UserPreference(context: Context) {
 
     companion object {
         private const val TOKEN = "token"
+        private const val NAME = "name"
     }
 }

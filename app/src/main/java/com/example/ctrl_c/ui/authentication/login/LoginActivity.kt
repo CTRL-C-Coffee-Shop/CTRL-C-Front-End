@@ -8,9 +8,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityLoginBinding
 import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
+import com.example.ctrl_c.model.response.LoginResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
 import com.example.ctrl_c.ui.main.MainActivity
@@ -70,6 +72,8 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
                                 "Login Success!",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            saveTokenToPreference(result.data)
+                            saveNameToPreference(result.data)
                             navigateToMainActivity()
                         }
                     }
@@ -77,6 +81,18 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
                 }
             }
         }
+    }
+
+    private fun saveTokenToPreference(data: LoginResponse) {
+        val pref = UserPreference(this)
+        val result = data.token
+        pref.saveToken(result)
+    }
+
+    private fun saveNameToPreference(data: LoginResponse) {
+        val pref = UserPreference(this)
+        val result = data.name
+        pref.saveName(result)
     }
 
     private fun navigateToRegisterActivity() {

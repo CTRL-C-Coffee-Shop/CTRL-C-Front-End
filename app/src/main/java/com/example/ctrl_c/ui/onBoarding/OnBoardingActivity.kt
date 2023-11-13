@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ctrl_c.R
+import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ItemOnBoardingBinding
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
+import com.example.ctrl_c.ui.main.MainActivity
 import com.example.ctrl_c.ui.onBoarding.adapter.OnBoardingAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -18,6 +20,7 @@ class OnBoardingActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        checkToken()
         setupAction()
     }
 
@@ -73,10 +76,18 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun navigateToMainActivity() {
         //intent to main activity
+        val intent = Intent(this@OnBoardingActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     private fun checkToken() {
-        //checking token on sharedpreferences.
+        //checking if user already logged in or not.
+        val pref = UserPreference(this)
+        val token = pref.getToken()
+        if (token != null) {
+            navigateToMainActivity()
+        }
     }
 
     companion object {

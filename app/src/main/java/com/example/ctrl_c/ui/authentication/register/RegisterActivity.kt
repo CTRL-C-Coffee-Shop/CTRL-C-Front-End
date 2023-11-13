@@ -5,13 +5,22 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ctrl_c.databinding.ActivityRegisterBinding
+import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
+import com.example.ctrl_c.model.result.Result.Error
+import com.example.ctrl_c.model.result.Result.Loading
+import com.example.ctrl_c.model.result.Result.Success
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
+import com.example.ctrl_c.viewmodel.authetntication.register.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var factory: ViewModelFactory
+    private val viewModel: RegisterViewModel by viewModels { factory }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -19,19 +28,57 @@ class RegisterActivity : AppCompatActivity(), LoadingHandler {
 
         supportActionBar?.hide()
 
+        setupViewModel()
         setupAction()
         playAnimation()
     }
 
     private fun setupAction() {
         binding.btnSignUp.setOnClickListener {
-            //nanti disini manggil API dlu tp buat sekarang pakein animasi loading dlu
-            loadingHandler(true)
+            val fullname = binding.etFullname.text.toString()
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            viewModel.register(fullname, email, password, 0).observe(this) {
+                it?.let { result ->
+                    when (result) {
+                        is Loading -> {
+                            loadingHandler(true)
+                        }
+
+                        is Error -> {
+                            loadingHandler(false)
+                            Toast.makeText(
+                                this,
+                                "Failed to Register",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+
+                        is Success -> {
+                            loadingHandler(false)
+                            Toast.makeText(
+                                this,
+                                "Register Success!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            navigateToSignInActivity()
+                        }
+                    }
+                }
+
+            }
+
         }
+
 
         binding.btnLogin.setOnClickListener {
             navigateToSignInActivity()
         }
+    }
+
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
     private fun navigateToSignInActivity() {
@@ -50,9 +97,7 @@ class RegisterActivity : AppCompatActivity(), LoadingHandler {
 
         AnimatorSet().apply {
             playSequentially(
-                image,
-                tvSignUp,
-                tvSignUpMessage
+                image, tvSignUp, tvSignUpMessage
             )
             startDelay = 300
         }.start()

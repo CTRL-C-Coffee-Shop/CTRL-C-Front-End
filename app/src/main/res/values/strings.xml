@@ -160,4 +160,10 @@
     <string name="logout">Logout</string>
     <string name="edit_profile_title">Edit Profile</string>
     <string name="edit_profile_name_temp">Ignatius</string>
+    <string name="fullname_desc">Fullname</string>
+    <string name="email_desc">Email</string>
+    <string name="email_hint_desc">ctrlc@gmail.com</string>
+    <string name="password_desc">Password</string>
+    <string name="password_hint_desc">thisismypass</string>
+    <string name="save_profile_changes">Save Changes</string>
 </resources>

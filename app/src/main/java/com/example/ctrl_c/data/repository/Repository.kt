@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.data.remote.ApiService
 import com.example.ctrl_c.model.response.GeneralResponse
+import com.example.ctrl_c.model.response.LoginResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.model.result.Result.Error
 import com.example.ctrl_c.model.result.Result.Loading
@@ -21,6 +22,20 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
             val response = apiService.register(
                 fullname, email, password, accessType
             )
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun login(email: String, password: String): LiveData<Result<LoginResponse>> = liveData {
+        emit(Loading)
+        try {
+            val response = apiService.login(email, password)
             if (response.error) {
                 emit(Error(response.message))
             } else {

@@ -23,5 +23,6 @@
         android:id="@+id/rv_transaction"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/spacing_64" />
+        android:layout_marginTop="@dimen/spacing_64"
+        tools:listitem="@layout/item_row_transaction"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

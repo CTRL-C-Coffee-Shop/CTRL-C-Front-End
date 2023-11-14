@@ -5,15 +5,24 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityLoginBinding
+import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
+import com.example.ctrl_c.model.response.LoginResponse
+import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
 import com.example.ctrl_c.ui.main.MainActivity
+import com.example.ctrl_c.viewmodel.authetntication.login.LoginViewModel
 
 
 class LoginActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var factory: ViewModelFactory
+    private val viewModel: LoginViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +31,13 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
 
         supportActionBar?.hide()
 
+        setupViewModel()
         playAnimation()
         setupAction()
+    }
+
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
     private fun setupAction() {
@@ -32,10 +46,53 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
         }
 
         binding.btnLogin.setOnClickListener {
-            //disini harusnya manggil API tapi untuk skarang dipakein loading animation dlu
-            navigateToMainActivity()
-//            loadingHandler(true)
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            viewModel.login(email, password).observe(this) {
+                it?.let { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            loadingHandler(true)
+                        }
+
+                        is Result.Error -> {
+                            loadingHandler(false)
+                            Toast.makeText(
+                                this,
+                                "Failed to Login",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+
+                        is Result.Success -> {
+                            loadingHandler(false)
+                            Toast.makeText(
+                                this,
+                                "Login Success!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            saveTokenToPreference(result.data)
+                            saveNameToPreference(result.data)
+                            navigateToMainActivity()
+                        }
+                    }
+
+                }
+            }
         }
+    }
+
+    private fun saveTokenToPreference(data: LoginResponse) {
+        val pref = UserPreference(this)
+        val result = data.token
+        pref.saveToken(result)
+    }
+
+    private fun saveNameToPreference(data: LoginResponse) {
+        val pref = UserPreference(this)
+        val result = data.name
+        pref.saveName(result)
     }
 
     private fun navigateToRegisterActivity() {

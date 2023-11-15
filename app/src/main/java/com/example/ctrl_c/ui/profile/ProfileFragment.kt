@@ -2,10 +2,10 @@ package com.example.ctrl_c.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.FragmentProfileBinding
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
@@ -25,6 +25,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUserName()
         setupAction()
     }
 
@@ -38,6 +39,7 @@ class ProfileFragment : Fragment() {
             pref.clearPreferences()
             navigateToLoginActivity()
         }
+
     }
 
     private fun navigateToEditProfileActivity() {
@@ -45,8 +47,14 @@ class ProfileFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun navigateToLoginActivity(){
-        val intent = Intent(activity,LoginActivity::class.java)
+    private fun setupUserName() {
+        val pref = UserPreference(requireContext())
+        val fullName = pref.getUserFullName()
+        binding.profileName.text = fullName.toString()
+    }
+
+    private fun navigateToLoginActivity() {
+        val intent = Intent(activity, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }

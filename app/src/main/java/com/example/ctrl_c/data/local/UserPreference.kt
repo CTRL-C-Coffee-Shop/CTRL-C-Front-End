@@ -20,6 +20,10 @@ class UserPreference(context: Context) {
         edit.putString(NAME,name)
         edit.apply()
     }
+
+    fun getUserFullName(): String? {
+        return preferences.getString(NAME, null)
+    }
     fun clearPreferences() {
         preferences.edit().clear().apply()
     }

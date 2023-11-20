@@ -15,7 +15,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="225dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="12dp"
@@ -42,9 +42,10 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginTop="8dp"
             android:text="@string/menu_desc"
             app:layout_constraintStart_toStartOf="parent"
@@ -173,6 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
             android:text="@string/sweetness_level"
             android:textColor="@color/light_brown"
             android:textSize="@dimen/text_size_24"
@@ -266,7 +268,7 @@
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            app:icon="@drawable/ic_add"
+            app:icon="@drawable/ic_added"
             app:iconPadding="0dp"
             app:iconSize="24dp"
             app:layout_constraintEnd_toStartOf="@+id/button"

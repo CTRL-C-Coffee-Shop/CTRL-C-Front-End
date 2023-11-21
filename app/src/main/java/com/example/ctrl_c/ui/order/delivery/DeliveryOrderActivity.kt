@@ -24,7 +24,7 @@ import java.io.IOException
 import java.util.Locale
 
 
-class DeliveryOrderActivity : AppCompatActivity() , LoadingHandler{
+class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var binding: ActivityDeliveryOrderBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var factory: ViewModelFactory
@@ -41,6 +41,7 @@ class DeliveryOrderActivity : AppCompatActivity() , LoadingHandler{
         setupViewModel()
         setupAction()
         setupProductList()
+        setupStoreLocation()
 
 
     }
@@ -71,7 +72,7 @@ class DeliveryOrderActivity : AppCompatActivity() , LoadingHandler{
                         loadingHandler(false)
                         Toast.makeText(
                             this,
-                            "Fetch Success!",
+                            "Fetch all products Success!",
                             Toast.LENGTH_SHORT
                         ).show()
                         Log.d("INI DEBUGGING", "setupProductList: ${result.data}")
@@ -133,6 +134,37 @@ class DeliveryOrderActivity : AppCompatActivity() , LoadingHandler{
 
                 } catch (_: IOException) {
 
+                }
+            }
+        }
+    }
+
+    private fun setupStoreLocation() {
+        viewModel.getAllStore().observe(this) {
+            it?.let { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this,
+                            "Failed to fetch store's location",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this,
+                            "Fetch Store Location Success!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d("INI DEBUGGING", "setupStoreList: ${result.data}")
+                    }
                 }
             }
         }

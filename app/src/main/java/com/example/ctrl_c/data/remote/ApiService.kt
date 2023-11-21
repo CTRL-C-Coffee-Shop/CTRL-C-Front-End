@@ -3,6 +3,7 @@ package com.example.ctrl_c.data.remote
 import com.example.ctrl_c.model.response.GeneralResponse
 import com.example.ctrl_c.model.response.authentication.LoginResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
+import com.example.ctrl_c.model.response.stores.StoresResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -31,4 +32,8 @@ interface ApiService {
         @Header("Authorization") token: String
     ): ProductResponse
 
+    @GET("/getkedai")
+    suspend fun getAllStore(
+        @Header("Authorization") token: String
+    ): StoresResponse
 }

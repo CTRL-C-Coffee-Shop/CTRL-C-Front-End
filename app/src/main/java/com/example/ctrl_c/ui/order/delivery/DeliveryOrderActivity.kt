@@ -7,10 +7,13 @@ import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.ctrl_c.R
 import com.example.ctrl_c.databinding.ActivityDeliveryOrderBinding
+import com.example.ctrl_c.factory.ViewModelFactory
+import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
@@ -20,6 +23,9 @@ import java.util.Locale
 class DeliveryOrderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDeliveryOrderBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var factory: ViewModelFactory
+    private val viewModel: ProductViewModel by viewModels { factory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDeliveryOrderBinding.inflate(layoutInflater)
@@ -28,8 +34,13 @@ class DeliveryOrderActivity : AppCompatActivity() {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
+        setupViewModel()
         setupAction()
 
+    }
+
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
     private fun checkLocationPermission() {

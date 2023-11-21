@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -13,6 +15,8 @@ import androidx.core.app.ActivityCompat
 import com.example.ctrl_c.R
 import com.example.ctrl_c.databinding.ActivityDeliveryOrderBinding
 import com.example.ctrl_c.factory.ViewModelFactory
+import com.example.ctrl_c.helper.LoadingHandler
+import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -20,7 +24,7 @@ import java.io.IOException
 import java.util.Locale
 
 
-class DeliveryOrderActivity : AppCompatActivity() {
+class DeliveryOrderActivity : AppCompatActivity() , LoadingHandler{
     private lateinit var binding: ActivityDeliveryOrderBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var factory: ViewModelFactory
@@ -36,11 +40,45 @@ class DeliveryOrderActivity : AppCompatActivity() {
 
         setupViewModel()
         setupAction()
+        setupProductList()
+
 
     }
 
     private fun setupViewModel() {
         factory = ViewModelFactory.getInstance(binding.root.context)
+    }
+
+    private fun setupProductList() {
+        viewModel.getAllProduct().observe(this) {
+            it?.let { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this,
+                            "Failed to fetch proudct data",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this,
+                            "Fetch Success!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d("INI DEBUGGING", "setupProductList: ${result.data}")
+                    }
+                }
+            }
+        }
     }
 
     private fun checkLocationPermission() {
@@ -129,5 +167,13 @@ class DeliveryOrderActivity : AppCompatActivity() {
             checkLocationPermission()
         }
 
+    }
+
+    override fun loadingHandler(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingAnimation.visibility = View.VISIBLE
+        } else {
+            binding.loadingAnimation.visibility = View.GONE
+        }
     }
 }

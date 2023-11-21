@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class ProductResponseItem(
+data class ProductItem(
 
 	@field:SerializedName("price")
 	val price: Int,

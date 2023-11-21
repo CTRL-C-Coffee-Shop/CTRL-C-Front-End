@@ -7,12 +7,13 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class ProductResponse(
 
-	@field:SerializedName("error")
-	val error: Boolean,
+	@field:SerializedName("product")
+	val product: List<ProductItem>,
 
 	@field:SerializedName("message")
 	val message: String,
 
-	@field:SerializedName("ProductResponse")
-	val productResponse: List<ProductResponseItem>
+    @field:SerializedName("error")
+    val error: Boolean,
+
 ) : Parcelable

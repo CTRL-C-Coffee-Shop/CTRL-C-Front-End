@@ -2,8 +2,11 @@ package com.example.ctrl_c.data.remote
 
 import com.example.ctrl_c.model.response.GeneralResponse
 import com.example.ctrl_c.model.response.authentication.LoginResponse
+import com.example.ctrl_c.model.response.product.ProductResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
@@ -17,9 +20,15 @@ interface ApiService {
     ): GeneralResponse
 
     @FormUrlEncoded
-    @POST("userlogin")
+    @POST("/userlogin")
     suspend fun login(
         @Field("Email") email: String,
         @Field("Password") password: String,
     ): LoginResponse
+
+    @GET("/product")
+    suspend fun getAllModule(
+        @Header("Authorization") token: String
+    ): ProductResponse
+
 }

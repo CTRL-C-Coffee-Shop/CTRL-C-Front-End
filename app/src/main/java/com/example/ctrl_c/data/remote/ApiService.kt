@@ -1,7 +1,7 @@
 package com.example.ctrl_c.data.remote
 
 import com.example.ctrl_c.model.response.GeneralResponse
-import com.example.ctrl_c.model.response.LoginResponse
+import com.example.ctrl_c.model.response.authentication.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

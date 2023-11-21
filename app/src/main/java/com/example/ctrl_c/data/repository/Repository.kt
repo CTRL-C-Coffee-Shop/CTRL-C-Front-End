@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.data.remote.ApiService
 import com.example.ctrl_c.model.response.GeneralResponse
-import com.example.ctrl_c.model.response.LoginResponse
+import com.example.ctrl_c.model.response.authentication.LoginResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.model.result.Result.Error
 import com.example.ctrl_c.model.result.Result.Loading

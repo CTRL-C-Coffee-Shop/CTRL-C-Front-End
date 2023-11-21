@@ -12,7 +12,7 @@ import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityLoginBinding
 import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
-import com.example.ctrl_c.model.response.LoginResponse
+import com.example.ctrl_c.model.response.authentication.LoginResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
 import com.example.ctrl_c.ui.main.MainActivity

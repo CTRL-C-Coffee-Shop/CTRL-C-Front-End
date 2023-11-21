@@ -12,12 +12,14 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctrl_c.R
 import com.example.ctrl_c.databinding.ActivityDeliveryOrderBinding
 import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
-import com.example.ctrl_c.model.response.stores.StoresItem
+import com.example.ctrl_c.model.response.product.ProductItem
 import com.example.ctrl_c.model.result.Result
+import com.example.ctrl_c.ui.order.adapter.ProductAdapter
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -30,25 +32,32 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var factory: ViewModelFactory
     private val viewModel: ProductViewModel by viewModels { factory }
-
+    private val adapter = ProductAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDeliveryOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
+        setupRecyclerView()
         setupViewModel()
         setupAction()
         setupProductList()
         setupStoreLocation()
 
-
     }
 
     private fun setupViewModel() {
         factory = ViewModelFactory.getInstance(binding.root.context)
+    }
+
+    private fun setupRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvMenu.layoutManager = layoutManager
+        binding.rvMenu.adapter = adapter
     }
 
     private fun setupProductList() {
@@ -65,18 +74,13 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
                             this,
                             "Failed to fetch proudct data",
                             Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        ).show()
                     }
 
                     is Result.Success -> {
                         loadingHandler(false)
-                        Toast.makeText(
-                            this,
-                            "Fetch all products Success!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Log.d("INI DEBUGGING", "setupProductList: ${result.data}")
+                        adapter.setProductData(result.data.product)
+                        Log.d("INIDEBUGG", "setupProductList: ${result.data.product}")
                     }
                 }
             }
@@ -159,15 +163,9 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
 
                     is Result.Success -> {
                         loadingHandler(false)
-                        Toast.makeText(
-                            this,
-                            "Fetch Store Location Success!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Log.d("INI DEBUGGING", "setupStoreList: ${result.data}")
 
+                        //binding ke dropdown menu
                         val listLocation = result.data.stores.map { "${it.name} - ${it.address}" }
-
                         val adapter = ArrayAdapter(this, R.layout.store_location_list, listLocation)
 
                         binding.autoComplete.apply {
@@ -194,6 +192,18 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
         binding.buttonChooseLocation.setOnClickListener {
             checkLocationPermission()
         }
+        adapter.setOnItemClickCallback(object : ProductAdapter.OnItemClickCallBack {
+            override fun onItemClicked(data: ProductItem) {
+                showSelectedModule(data)
+            }
+        })
+
+    }
+
+    private fun showSelectedModule(data: ProductItem) {
+//        val intent = Intent(this, ModuleDetailActivity::class.java)
+//        intent.putExtra("module", data)
+//        startActivity(intent)
     }
 
     override fun loadingHandler(isLoading: Boolean) {

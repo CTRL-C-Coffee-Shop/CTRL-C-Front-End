@@ -27,7 +27,7 @@ interface ApiService {
     ): LoginResponse
 
     @GET("/product")
-    suspend fun getAllModule(
+    suspend fun getAllProduct(
         @Header("Authorization") token: String
     ): ProductResponse
 

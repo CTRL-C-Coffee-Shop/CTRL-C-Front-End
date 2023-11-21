@@ -179,4 +179,12 @@
     <string name="password_desc">Password</string>
     <string name="password_hint_desc">thisismypass</string>
     <string name="save_profile_changes">Save Changes</string>
+    <string name="detail_voucher_title">Detail Voucher</string>
+    <string name="voucher_name">Neque porro quisquam est qui dolorem Neque </string>
+    <string name="voucher_desc">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend quam et ligula molestie, vel pharetra elit efficitur. Curabitur consequat tellus gravida elit lobortis, non dignissim magna convallis. Nam ut augue in dolor sodales tempor. "</string>
+    <string name="use_voucher_button">Use Now!</string>
+    <string name="avail_until_title">Available untill</string>
+    <string name="avail_until_desc">31 Okt 2023</string>
+    <string name="min_transaction_title">Min. Transaction</string>
+    <string name="min_transaction_desc">50k</string>
 </resources>

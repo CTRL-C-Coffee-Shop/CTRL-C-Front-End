@@ -16,6 +16,7 @@ import com.example.ctrl_c.R
 import com.example.ctrl_c.databinding.ActivityDeliveryOrderBinding
 import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
+import com.example.ctrl_c.model.response.stores.StoresItem
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -164,41 +165,35 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
                             Toast.LENGTH_SHORT
                         ).show()
                         Log.d("INI DEBUGGING", "setupStoreList: ${result.data}")
+
+                        val listLocation = result.data.stores.map { "${it.name} - ${it.address}" }
+
+                        val adapter = ArrayAdapter(this, R.layout.store_location_list, listLocation)
+
+                        binding.autoComplete.apply {
+                            setAdapter(adapter)
+                            onItemClickListener =
+                                AdapterView.OnItemClickListener { adapterView, _, position, _ ->
+                                    val itemSelected = adapterView.getItemAtPosition(position)
+                                    //masukin nama storenya (bisa di pass ke API dari sini)
+                                    Toast.makeText(
+                                        this@DeliveryOrderActivity,
+                                        "You Choose $itemSelected for the store's location",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                        }
                     }
+
                 }
             }
         }
     }
 
     private fun setupAction() {
-        //data dummy buat lokasi kedai
-        val listLocation = listOf(
-            "CTRL+C 23 Paskal",
-            "CTRL+C Istana Plaza",
-            "CTRL+C Dipati Ukur",
-            "CTRL+C Dago",
-            "CTRL+C Paris Van Java"
-        )
-        val adapter = ArrayAdapter(this, R.layout.store_location_list, listLocation)
-
-        binding.autoComplete.apply {
-            setAdapter(adapter)
-            onItemClickListener =
-                AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-                    val itemSelected = adapterView.getItemAtPosition(position)
-                    //masukin nama storenya (bisa di pass ke API dari sini)
-                    Toast.makeText(
-                        this@DeliveryOrderActivity,
-                        "You Choose $itemSelected for the store's location",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-        }
-
         binding.buttonChooseLocation.setOnClickListener {
             checkLocationPermission()
         }
-
     }
 
     override fun loadingHandler(isLoading: Boolean) {

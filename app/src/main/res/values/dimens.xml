@@ -60,6 +60,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="spacing_500">500dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="spacing_1">1dp</dimen>
+    <dimen name="spacing_2">2dp</dimen>
 
 
 </resources>

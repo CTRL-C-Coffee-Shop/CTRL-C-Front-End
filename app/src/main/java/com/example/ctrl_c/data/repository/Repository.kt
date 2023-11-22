@@ -5,7 +5,9 @@ import androidx.lifecycle.liveData
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.data.remote.ApiService
 import com.example.ctrl_c.model.response.GeneralResponse
-import com.example.ctrl_c.model.response.LoginResponse
+import com.example.ctrl_c.model.response.authentication.LoginResponse
+import com.example.ctrl_c.model.response.product.ProductResponse
+import com.example.ctrl_c.model.response.stores.StoresResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.model.result.Result.Error
 import com.example.ctrl_c.model.result.Result.Loading
@@ -36,6 +38,36 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
         emit(Loading)
         try {
             val response = apiService.login(email, password)
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun getProduct(): LiveData<Result<ProductResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.getAllProduct("Bearer $token")
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun getAllStores(): LiveData<Result<StoresResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.getAllStore("Bearer $token")
             if (response.error) {
                 emit(Error(response.message))
             } else {

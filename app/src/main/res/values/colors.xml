@@ -29,6 +29,7 @@
 
 <!--    Error color-->
     <color name="pink_500">#F43F5E</color>
+    <color name="red">#FF002C</color>
     <color name="white_gray">#EAE5EA</color>
 
     <attr name="itemArticleColor" format="color" />

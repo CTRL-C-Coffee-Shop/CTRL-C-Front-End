@@ -188,4 +188,15 @@
     <string name="avail_until_desc">31 Okt 2023</string>
     <string name="min_transaction_title">Min. Transaction</string>
     <string name="min_transaction_desc">50k</string>
+    <string name="logout_button">Logout</string>
+    <string name="searchbar_hint">Masukkan order ID</string>
+    <string name="admin_order_id">Order ID</string>
+    <string name="admin_date">Date</string>
+    <string name="admin_status">Status</string>
+    <string name="admin_total">Total</string>
+    <string name="admin_actions">Actions</string>
+    <string name="admin_order_id_desc">0001</string>
+    <string name="admin_date_desc">24/07/2023</string>
+    <string name="admin_status_desc">COMPLETED</string>
+    <string name="admin_total_desc">Rp.100.000</string>
 </resources>

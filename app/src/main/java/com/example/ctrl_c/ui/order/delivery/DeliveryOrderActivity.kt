@@ -1,6 +1,7 @@
 package com.example.ctrl_c.ui.order.delivery
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.model.response.product.ProductItem
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.order.adapter.ProductAdapter
+import com.example.ctrl_c.ui.order.detailed.DetailMenuActivity
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -121,6 +123,7 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
+
         fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
             val location = task.result
             if (location != null) {
@@ -194,16 +197,16 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
         }
         adapter.setOnItemClickCallback(object : ProductAdapter.OnItemClickCallBack {
             override fun onItemClicked(data: ProductItem) {
-                showSelectedModule(data)
+                showSelectedProduct(data)
             }
         })
 
     }
 
-    private fun showSelectedModule(data: ProductItem) {
-//        val intent = Intent(this, ModuleDetailActivity::class.java)
-//        intent.putExtra("module", data)
-//        startActivity(intent)
+    private fun showSelectedProduct(data: ProductItem) {
+        val intent = Intent(this, DetailMenuActivity::class.java)
+        intent.putExtra("product", data)
+        startActivity(intent)
     }
 
     override fun loadingHandler(isLoading: Boolean) {

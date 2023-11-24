@@ -15,15 +15,36 @@ class UserPreference(context: Context) {
         edit.apply()
     }
 
-    fun saveName(name:String){
+    fun saveName(name: String) {
         val edit = preferences.edit()
-        edit.putString(NAME,name)
+        edit.putString(NAME, name)
         edit.apply()
+    }
+
+    fun saveUserId(id: Int) {
+        val edit = preferences.edit()
+        edit.putInt(USER_ID, id)
+        edit.apply()
+    }
+
+    fun saveUserEmail(email: String) {
+        val edit = preferences.edit()
+        edit.putString(EMAIL, email)
+        edit.apply()
+    }
+
+    fun getUserId(): Int {
+        return preferences.getInt(USER_ID, 0)
+    }
+
+    fun getUserEmail(): String? {
+        return preferences.getString(EMAIL, null)
     }
 
     fun getUserFullName(): String? {
         return preferences.getString(NAME, null)
     }
+
     fun clearPreferences() {
         preferences.edit().clear().apply()
     }
@@ -32,5 +53,7 @@ class UserPreference(context: Context) {
     companion object {
         private const val TOKEN = "token"
         private const val NAME = "name"
+        private const val USER_ID = "user_id"
+        private const val EMAIL = "email"
     }
 }

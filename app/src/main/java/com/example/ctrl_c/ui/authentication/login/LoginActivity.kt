@@ -74,6 +74,8 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
                             ).show()
                             saveTokenToPreference(result.data)
                             saveNameToPreference(result.data)
+                            saveEmailToPreference(result.data)
+                            saveUserIdToPreference(result.data)
                             navigateToMainActivity()
                         }
                     }
@@ -91,10 +93,21 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
 
     private fun saveNameToPreference(data: LoginResponse) {
         val pref = UserPreference(this)
-        val result = data.name
+        val result = data.fullName
         pref.saveName(result)
     }
 
+    private fun saveEmailToPreference(data: LoginResponse){
+        val pref = UserPreference(this)
+        val email = data.email
+        pref.saveUserEmail(email)
+    }
+
+    private fun saveUserIdToPreference(data: LoginResponse){
+        val pref = UserPreference(this)
+        val userId = data.userId
+        pref.saveUserId(userId)
+    }
     private fun navigateToRegisterActivity() {
         //intent to Register activity.
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)

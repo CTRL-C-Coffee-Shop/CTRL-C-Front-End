@@ -82,7 +82,6 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Success -> {
                         loadingHandler(false)
                         adapter.setProductData(result.data.product)
-                        Log.d("INIDEBUGG", "setupProductList: ${result.data.product}")
                     }
                 }
             }

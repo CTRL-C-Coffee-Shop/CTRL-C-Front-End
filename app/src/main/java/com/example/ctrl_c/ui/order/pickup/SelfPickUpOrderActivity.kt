@@ -1,5 +1,6 @@
 package com.example.ctrl_c.ui.order.pickup
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.model.response.product.ProductItem
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.order.adapter.ProductAdapter
+import com.example.ctrl_c.ui.order.detailed.DetailMenuActivity
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 
 class SelfPickUpOrderActivity : AppCompatActivity(), LoadingHandler {
@@ -67,7 +69,6 @@ class SelfPickUpOrderActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Success -> {
                         loadingHandler(false)
                         adapter.setProductData(result.data.product)
-                        Log.d("INIDEBUGG", "setupProductList: ${result.data.product}")
                     }
                 }
             }
@@ -122,14 +123,14 @@ class SelfPickUpOrderActivity : AppCompatActivity(), LoadingHandler {
     private fun setupAction() {
         adapter.setOnItemClickCallback(object : ProductAdapter.OnItemClickCallBack {
             override fun onItemClicked(data: ProductItem) {
-                showSelectedModule(data)
+                showSelectedProduct(data)
             }
         })
     }
-    private fun showSelectedModule(data: ProductItem) {
-//        val intent = Intent(this, ModuleDetailActivity::class.java)
-//        intent.putExtra("module", data)
-//        startActivity(intent)
+    private fun showSelectedProduct(data: ProductItem) {
+        val intent = Intent(this, DetailMenuActivity::class.java)
+        intent.putExtra("product", data)
+        startActivity(intent)
     }
 
     override fun loadingHandler(isLoading: Boolean) {

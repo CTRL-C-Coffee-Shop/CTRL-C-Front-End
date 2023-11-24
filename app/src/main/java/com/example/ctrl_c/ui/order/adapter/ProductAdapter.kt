@@ -36,7 +36,7 @@ class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ListViewHolder>() {
 
         holder.tvProductName.text = productName
         holder.tvDesc.text = productDesc
-        holder.tvPrice.text = productPrice.toString()
+        holder.tvPrice.text = productPrice.toString() + ".000"
 
         Glide.with(holder.itemView.context)
             .load(currentList[position].url)

@@ -179,4 +179,23 @@
     <string name="password_desc">Password</string>
     <string name="password_hint_desc">thisismypass</string>
     <string name="save_profile_changes">Save Changes</string>
+    <string name="checkout_title">Checkout</string>
+    <string name="order_option">Pick Up</string>
+    <string name="order_option_desc">Self Pick up without queueing</string>
+    <string name="order_option_button">Change</string>
+    <string name="order_detail_title">Order Details</string>
+    <string name="add_order_button">Add</string>
+    <string name="voucher_discount_title">Voucher Discounts</string>
+    <string name="discount_option_desc">Use Voucher</string>
+    <string name="payment_method_option_title">Payment Method</string>
+    <string name="payment_method_option_desc">Choose Payment Method</string>
+    <string name="payment_details_title">Payment Details</string>
+    <string name="price_payment_detail_title">Price</string>
+    <string name="price_payment_detail_desc">Rp 50.000</string>
+    <string name="total_payment_title">Total Payment</string>
+    <string name="total_payment_desc">Rp 50.000</string>
+    <string name="continue_checkout_button">Continue</string>
+    <string name="order_name_checkout">Arabica</string>
+    <string name="order_desc_checkout">"Large\nLess Ice "</string>
+    <string name="order_price_checkout">Rp 50.000</string>
 </resources>

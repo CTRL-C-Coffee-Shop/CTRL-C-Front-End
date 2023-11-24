@@ -12,7 +12,8 @@ import com.example.ctrl_c.model.response.product.ProductItem
 class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
 
     private lateinit var binding: ActivityDetailMenuBinding
-    var productAmmount: Int = 0
+    private var productAmount: Int = 0
+    private var productPrice: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,8 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
         supportActionBar?.hide()
 
         setupDetailedProduct()
-        updateAmmount()
+        updateAmount()
+        updatePrice()
         setupAction()
     }
 
@@ -32,38 +34,45 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
             binding.apply {
                 textView4.text = product.name
                 textView5.text = product.description
-                textView6.text = "Rp. ${product.price}"
+                textView6.text = "Rp. ${product.price}.000"
                 Glide.with(this@DetailMenuActivity)
                     .load(product.url)
                     .error(R.drawable.default_menu)
-                    .into(imageView2)
+                    .into(imageView)
             }
+            productPrice = product.price
         }
     }
 
-    private fun increaseAmmount() {
-        productAmmount++
+    private fun increaseAmount() {
+        productAmount++
     }
 
-    private fun decreaseAmmount() {
-        if (productAmmount > 0) {
-            productAmmount--
+    private fun decreaseAmount() {
+        if (productAmount > 0) {
+            productAmount--
         }
     }
 
-    private fun updateAmmount() {
-        binding.textView12.text = productAmmount.toString()
+    private fun updateAmount() {
+        binding.textView12.text = productAmount.toString()
+    }
+
+    private fun updatePrice() {
+        binding.button.text = "Add Rp. ${productPrice*productAmount}.000"
     }
 
     private fun setupAction() {
         binding.apply {
             materialButton9.setOnClickListener {
-                decreaseAmmount()
-                updateAmmount()
+                decreaseAmount()
+                updateAmount()
+                updatePrice()
             }
             materialButton10.setOnClickListener {
-                increaseAmmount()
-                updateAmmount()
+                increaseAmount()
+                updateAmount()
+                updatePrice()
             }
         }
     }

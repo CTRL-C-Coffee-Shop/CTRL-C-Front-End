@@ -1,6 +1,7 @@
 package com.example.ctrl_c.ui.order.detailed
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -12,8 +13,15 @@ import com.example.ctrl_c.model.response.product.ProductItem
 class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
 
     private lateinit var binding: ActivityDetailMenuBinding
+
+    // buat harga dan jumlah barang
     private var productAmount: Int = 0
     private var productPrice: Int = 0
+
+    //buat radio button
+    private var drinkType: String = ""
+    private var cupSize: String = ""
+    private var sweetnessLevel: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +67,7 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun updatePrice() {
-        binding.button.text = "Add Rp. ${productPrice*productAmount}.000"
+        binding.button.text = "Add Rp. ${productPrice * productAmount}.000"
     }
 
     private fun setupAction() {
@@ -73,6 +81,42 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
                 increaseAmount()
                 updateAmount()
                 updatePrice()
+            }
+
+            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radio_regular_cup -> {
+                        cupSize = radioRegularCup.text.toString()
+                    }
+
+                    R.id.radio_large_cup -> {
+                        cupSize = radioRegularCup.text.toString()
+                    }
+                }
+            }
+            radioGroupSweetness.setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radio_normal_sweet -> {
+                        sweetnessLevel = radioNormalSweet.text.toString()
+                    }
+
+                    R.id.radio_less_sweet -> {
+                        sweetnessLevel = radioLessSweet.text.toString()
+                    }
+                }
+
+            }
+            radioGroupWarmth.setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radio_hot -> {
+                        drinkType = radioHot.text.toString()
+                    }
+
+                    R.id.radio_iced -> {
+                        drinkType = radioIced.text.toString()
+                    }
+                }
+
             }
         }
     }

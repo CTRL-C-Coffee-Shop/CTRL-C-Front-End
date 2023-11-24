@@ -24,6 +24,9 @@
             android:name=".ui.voucher.VoucherDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.order.checkout.CheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.order.detailed.DetailMenuActivity"
             android:exported="false" />
         <activity

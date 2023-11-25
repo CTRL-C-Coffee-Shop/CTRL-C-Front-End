@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityAdminPageBinding
 import com.example.ctrl_c.factory.ViewModelFactory
+import com.example.ctrl_c.ui.admin.adapter.AdminPageAdapter
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
 import com.example.ctrl_c.viewmodel.order.AdminOrderViewModel
 
@@ -15,7 +16,7 @@ class AdminPageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminPageBinding
     private lateinit var factory: ViewModelFactory
     private val viewModel: AdminOrderViewModel by viewModels { factory }
-    private val adapter = AdminPageActivity()
+    private val adapter = AdminPageAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +51,18 @@ class AdminPageActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        logout()
+
+
+    }
+
+    private fun logout(){
         binding.button2.setOnClickListener {
             val pref = UserPreference(this)
             pref.clearPreferences()
             navigateToLoginActivity()
         }
     }
-
     private fun navigateToLoginActivity() {
         val intent = Intent(this@AdminPageActivity, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

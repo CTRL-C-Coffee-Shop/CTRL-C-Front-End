@@ -167,7 +167,7 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
                         loadingHandler(false)
 
                         //binding ke dropdown menu
-                        val listLocation = result.data.stores.map { "${it.name} - ${it.address}" }
+                        val listLocation = result.data.kedai.map { "${it.name} - ${it.address}" }
                         val adapter = ArrayAdapter(this, R.layout.store_location_list, listLocation)
 
                         binding.autoComplete.apply {

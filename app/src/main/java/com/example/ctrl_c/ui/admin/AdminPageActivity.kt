@@ -27,10 +27,15 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
         binding = ActivityAdminPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initRecycleView()
-        setupViewModel()
-        setupAction()
 
+        setupViewModel()
+        setupOrderList()
+        initRecycleView()
+        setupAction()
+//
+//        val pref = UserPreference(this)
+//        val result = pref.getToken()
+//        Toast.makeText(this, "ini tokennya $result", Toast.LENGTH_SHORT).show()
 //        with(binding) {
 //            searchView.setupWithSearchBar(searchBar)
 //            searchView

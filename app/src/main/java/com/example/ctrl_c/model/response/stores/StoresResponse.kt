@@ -10,8 +10,8 @@ data class StoresResponse(
 	@field:SerializedName("error")
 	val error: Boolean,
 
-	@field:SerializedName("stores")
-	val stores: List<StoresItem>,
+	@field:SerializedName("Kedai")
+	val kedai: List<KedaiItem>,
 
 	@field:SerializedName("message")
 	val message: String

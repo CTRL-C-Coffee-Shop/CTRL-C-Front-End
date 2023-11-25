@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class StoresItem(
+data class KedaiItem(
 
 	@field:SerializedName("address")
 	val address: String,

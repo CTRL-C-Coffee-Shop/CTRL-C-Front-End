@@ -25,6 +25,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUserEmail()
         setupUserName()
         setupAction()
     }
@@ -53,6 +54,11 @@ class ProfileFragment : Fragment() {
         binding.profileName.text = fullName.toString()
     }
 
+    private fun setupUserEmail(){
+        val preference = UserPreference(requireContext())
+        val userEmail = preference.getUserEmail()
+        binding.tvEmail.text = userEmail
+    }
     private fun navigateToLoginActivity() {
         val intent = Intent(activity, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

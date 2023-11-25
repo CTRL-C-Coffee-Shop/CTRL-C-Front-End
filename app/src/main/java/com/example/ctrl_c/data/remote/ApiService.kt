@@ -2,6 +2,7 @@ package com.example.ctrl_c.data.remote
 
 import com.example.ctrl_c.model.response.GeneralResponse
 import com.example.ctrl_c.model.response.authentication.LoginResponse
+import com.example.ctrl_c.model.response.order.AdminGetOrderResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
 import retrofit2.http.Field
@@ -36,4 +37,9 @@ interface ApiService {
     suspend fun getAllStore(
         @Header("Authorization") token: String
     ): StoresResponse
+
+    @GET("/getorderadmin")
+    suspend fun getAllOrderAdmin(
+        @Header("Authorizaton") token: String
+    ): AdminGetOrderResponse
 }

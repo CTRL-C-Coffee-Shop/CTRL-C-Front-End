@@ -2,18 +2,28 @@ package com.example.ctrl_c.ui.admin
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityAdminPageBinding
+import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
+import com.example.ctrl_c.viewmodel.order.AdminOrderViewModel
 
 class AdminPageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminPageBinding
+    private lateinit var factory: ViewModelFactory
+    private val viewModel: AdminOrderViewModel by viewModels { factory }
+    private val adapter = AdminPageActivity()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initRecycleView()
+        setupViewModel()
         setupAction()
 
 //        with(binding) {
@@ -27,6 +37,16 @@ class AdminPageActivity : AppCompatActivity() {
 //                    false
 //                }
 //        }
+    }
+
+    private fun setupViewModel() {
+        factory = ViewModelFactory.getInstance(binding.root.context)
+    }
+
+    private fun initRecycleView(){
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvOrder.layoutManager = layoutManager
+        binding.rvOrder.adapter = adapter
     }
 
     private fun setupAction() {

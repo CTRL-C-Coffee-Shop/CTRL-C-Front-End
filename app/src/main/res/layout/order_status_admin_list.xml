@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/orderID"
             android:layout_width="65dp"
             android:layout_height="21dp"
             android:gravity="center_vertical"
@@ -20,12 +20,14 @@
             android:textSize="@dimen/text_size_12"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView20"
+            app:layout_constraintEnd_toStartOf="@+id/orderStatus"
+            app:layout_constraintHorizontal_bias="0.16"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.517" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/orderDate"
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -34,12 +36,12 @@
 
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView18"
-            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintEnd_toStartOf="@+id/orderStatus"
+            app:layout_constraintStart_toEndOf="@+id/orderID"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/orderStatus"
             android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -48,12 +50,12 @@
             android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView21"
-            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintEnd_toStartOf="@+id/orderTotalPrice"
+            app:layout_constraintStart_toEndOf="@+id/orderDate"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/orderTotalPrice"
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -61,12 +63,12 @@
             android:textSize="@dimen/text_size_12"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView17"
-            app:layout_constraintStart_toEndOf="@+id/textView18"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAction"
+            app:layout_constraintStart_toEndOf="@+id/orderStatus"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/textView17"
+            android:id="@+id/buttonAction"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -77,7 +79,7 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintStart_toEndOf="@+id/orderTotalPrice"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -87,7 +89,7 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintStart_toEndOf="@+id/orderTotalPrice"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

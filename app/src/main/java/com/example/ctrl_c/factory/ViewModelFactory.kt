@@ -7,6 +7,7 @@ import com.example.ctrl_c.data.repository.Repository
 import com.example.ctrl_c.di.Injection
 import com.example.ctrl_c.viewmodel.authetntication.login.LoginViewModel
 import com.example.ctrl_c.viewmodel.authetntication.register.RegisterViewModel
+import com.example.ctrl_c.viewmodel.order.AdminOrderViewModel
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 
 class ViewModelFactory(private val repository: Repository) :
@@ -25,6 +26,11 @@ class ViewModelFactory(private val repository: Repository) :
             modelClass.isAssignableFrom(ProductViewModel::class.java) -> {
                 ProductViewModel(repository) as T
             }
+
+            modelClass.isAssignableFrom(AdminOrderViewModel::class.java) -> {
+                AdminOrderViewModel(repository) as T
+            }
+
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

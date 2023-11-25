@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.ctrl_c.R
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ItemOnBoardingBinding
+import com.example.ctrl_c.ui.admin.AdminPageActivity
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
 import com.example.ctrl_c.ui.main.MainActivity
 import com.example.ctrl_c.ui.onBoarding.adapter.OnBoardingAdapter
@@ -85,9 +86,20 @@ class OnBoardingActivity : AppCompatActivity() {
         //checking if user already logged in or not.
         val pref = UserPreference(this)
         val token = pref.getToken()
+        val userTyoe = pref.getUserType()
         if (token != null) {
-            navigateToMainActivity()
+            if (!userTyoe) {
+                navigateToMainActivity()
+            } else {
+                navigateToAdminActivity()
+            }
         }
+    }
+
+    private fun navigateToAdminActivity() {
+        val intent = Intent(this@OnBoardingActivity, AdminPageActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     companion object {

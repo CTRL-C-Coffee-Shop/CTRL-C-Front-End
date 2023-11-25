@@ -14,6 +14,7 @@ import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.model.response.authentication.LoginResponse
 import com.example.ctrl_c.model.result.Result
+import com.example.ctrl_c.ui.admin.AdminPageActivity
 import com.example.ctrl_c.ui.authentication.register.RegisterActivity
 import com.example.ctrl_c.ui.main.MainActivity
 import com.example.ctrl_c.viewmodel.authetntication.login.LoginViewModel
@@ -76,13 +77,37 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
                             saveNameToPreference(result.data)
                             saveEmailToPreference(result.data)
                             saveUserIdToPreference(result.data)
-                            navigateToMainActivity()
+                            saveUserTypeToPreference(result.data)
+                            checkUserType(result.data)
                         }
                     }
 
                 }
             }
         }
+    }
+
+    private fun checkUserType(data:LoginResponse){
+        val userType= data.accessType
+        if(userType){
+            navigateToAdminPageActivity()
+        }else{
+            navigateToMainActivity()
+        }
+
+    }
+
+    private fun saveUserTypeToPreference(data:LoginResponse){
+        val pref = UserPreference(this)
+        val userType = data.accessType
+        pref.saveUserType(userType)
+    }
+
+    private fun navigateToAdminPageActivity() {
+        //intent to Main activity / Home Page.
+        val intent = Intent(this@LoginActivity, AdminPageActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     private fun saveTokenToPreference(data: LoginResponse) {

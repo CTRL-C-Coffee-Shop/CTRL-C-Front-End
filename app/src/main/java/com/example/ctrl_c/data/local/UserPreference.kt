@@ -33,6 +33,16 @@ class UserPreference(context: Context) {
         edit.apply()
     }
 
+    fun saveUserType(userType: Boolean) {
+        val edit = preferences.edit()
+        edit.putBoolean(USER_TYPE, userType)
+        edit.apply()
+    }
+
+    fun getUserType(): Boolean{
+        return preferences.getBoolean(USER_TYPE, false)
+    }
+
     fun getUserId(): Int {
         return preferences.getInt(USER_ID, 0)
     }
@@ -51,6 +61,7 @@ class UserPreference(context: Context) {
 
 
     companion object {
+        private const val USER_TYPE = "user_type"
         private const val TOKEN = "token"
         private const val NAME = "name"
         private const val USER_ID = "user_id"

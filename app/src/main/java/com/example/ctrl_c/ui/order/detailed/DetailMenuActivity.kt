@@ -27,7 +27,6 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.hide()
 
         setupDetailedProduct()

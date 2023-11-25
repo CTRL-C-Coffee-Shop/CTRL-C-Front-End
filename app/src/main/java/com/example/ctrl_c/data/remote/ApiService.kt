@@ -42,4 +42,9 @@ interface ApiService {
     suspend fun getAllOrderAdmin(
         @Header("Authorization") token: String
     ): AdminGetOrderResponse
+
+    @GET("/updateorderstatus")
+    suspend fun updateOrderStatus(
+        @Header("Authorization") token: String
+    ): 
 }

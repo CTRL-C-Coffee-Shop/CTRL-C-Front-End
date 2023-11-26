@@ -7,6 +7,7 @@ import com.example.ctrl_c.R
 import com.example.ctrl_c.databinding.ActivityMainBinding
 import com.example.ctrl_c.ui.home.HomeFragment
 import com.example.ctrl_c.ui.profile.ProfileFragment
+import com.example.ctrl_c.ui.transactions.TransactionPageFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             when (menu.itemId) {
 
                 R.id.home_bottom_nav -> replaceFragment(HomeFragment())
-//                R.id.transaction_bottom_nav -> replaceFragment(HomeFragment())
+                R.id.transaction_bottom_nav -> replaceFragment(TransactionPageFragment())
                 R.id.profile_bottom_nav -> replaceFragment(ProfileFragment())
 
                 else -> {

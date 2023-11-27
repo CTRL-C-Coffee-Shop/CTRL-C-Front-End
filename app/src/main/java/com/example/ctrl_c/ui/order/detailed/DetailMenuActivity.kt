@@ -1,8 +1,8 @@
 package com.example.ctrl_c.ui.order.detailed
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.ctrl_c.R
@@ -22,6 +22,7 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
     private var drinkType: String = ""
     private var cupSize: String = ""
     private var sweetnessLevel: String = ""
+    private var storeLocation: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,12 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
         updateAmount()
         updatePrice()
         setupAction()
+        getStoreLocationFromIntent()
+    }
+
+
+    private fun getStoreLocationFromIntent() {
+         storeLocation = intent.getStringExtra("storeLocation")
     }
 
     private fun setupDetailedProduct() {

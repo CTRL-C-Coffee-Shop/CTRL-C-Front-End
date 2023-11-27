@@ -5,6 +5,7 @@ import com.example.ctrl_c.model.response.authentication.LoginResponse
 import com.example.ctrl_c.model.response.order.AdminGetOrderResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
+import com.example.ctrl_c.model.response.updateOrderStatus.UpdateStatusOrderResponse
 import com.example.ctrl_c.model.response.userOrder.UserOrdersResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -44,10 +45,13 @@ interface ApiService {
         @Header("Authorization") token: String
     ): AdminGetOrderResponse
 
-//    @GET("/updateorderstatus")
-//    suspend fun updateOrderStatus(
-//        @Header("Authorization") token: String
-//    )
+    @FormUrlEncoded
+    @POST("/updateorderstatus")
+    suspend fun updateOrderStatus(
+        @Header("Authorization") token: String,
+        @Field("Status") status:String,
+        @Field("Order_Id") orderId:Int
+    ):UpdateStatusOrderResponse
 
     @POST("/orders")
     suspend fun getAllOrder(

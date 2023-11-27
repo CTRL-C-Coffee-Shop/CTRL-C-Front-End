@@ -9,6 +9,7 @@ import com.example.ctrl_c.model.response.authentication.LoginResponse
 import com.example.ctrl_c.model.response.order.AdminGetOrderResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
+import com.example.ctrl_c.model.response.updateOrderStatus.UpdateStatusOrderResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.model.result.Result.Error
 import com.example.ctrl_c.model.result.Result.Loading
@@ -84,6 +85,24 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
         val token = pref.getToken()
         try {
             val response = apiService.getAllOrderAdmin("Bearer $token")
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun updateStatusOrderAdmin(
+        status: String,
+        orderId: Int
+    ): LiveData<Result<UpdateStatusOrderResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.updateOrderStatus("Bearer $token", status, orderId)
             if (response.error) {
                 emit(Error(response.message))
             } else {

@@ -2,6 +2,7 @@ package com.example.ctrl_c.ui.admin
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -11,6 +12,7 @@ import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityAdminPageBinding
 import com.example.ctrl_c.factory.ViewModelFactory
 import com.example.ctrl_c.helper.LoadingHandler
+import com.example.ctrl_c.model.response.order.OrdersItem
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.admin.adapter.AdminPageAdapter
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
@@ -61,7 +63,12 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
 
     private fun setupAction() {
         logout()
+        adapter.setOnItemClickCallback(object : AdminPageAdapter.OnItemClickCallBack {
+            override fun onItemClicked(data: OrdersItem) {
+                updateStatusOrder(data.idOrder)
+            }
 
+        })
     }
 
     private fun setupOrderList() {
@@ -84,6 +91,33 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Success -> {
                         loadingHandler(false)
                         adapter.setOrderList(result.data.orders)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateStatusOrder(orderId: Int) {
+        viewModel.updateStatusOrders("Completed", orderId).observe(this) {
+            it?.let { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this,
+                            "Failed to update order status!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d("INI ERORRRRR", "updateStatusOrder: $result ")
+                    }
+
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        Toast.makeText(this, "Success updating order status!", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

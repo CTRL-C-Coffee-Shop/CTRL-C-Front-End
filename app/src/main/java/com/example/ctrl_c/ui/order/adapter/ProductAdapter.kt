@@ -63,6 +63,7 @@ class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ListViewHolder>() {
         notifyDataSetChanged()
     }
 
+
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallBack) {
         this.onItemClickCallback = onItemClickCallback
     }

@@ -97,8 +97,7 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
     }
 
     fun updateStatusOrderAdmin(
-        status: String,
-        orderId: Int
+        status: String, orderId: Int
     ): LiveData<Result<UpdateStatusOrderResponse>> = liveData {
         emit(Loading)
         val token = pref.getToken()
@@ -114,11 +113,41 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
         }
     }
 
-    fun getAllTransaction(id:Int): LiveData<Result<UserOrdersResponse>> = liveData {
+    fun getAllTransaction(id: Int): LiveData<Result<UserOrdersResponse>> = liveData {
         emit(Loading)
         val token = pref.getToken()
         try {
             val response = apiService.getAllOrder("Bearer $token", id)
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun postOrderToCart(
+        userID: Int,
+        productID: Int,
+        amount: Int,
+        warmth: Int,
+        size: Int,
+        sugarLvl: Int
+    ): LiveData<Result<GeneralResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.postCart(
+                "Bearer $token",
+                userID,
+                productID,
+                amount,
+                warmth,
+                size,
+                sugarLvl
+            )
             if (response.error) {
                 emit(Error(response.message))
             } else {

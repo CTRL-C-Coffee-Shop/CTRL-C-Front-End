@@ -133,7 +133,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="order_title">Orders</string>
+    <string name="order_title">Transaction History</string>
     <string name="transaction_status">Ongoing</string>
     <string name="transaction_location">Paris Van Java</string>
     <string name="transaction_date">Senin, 04 Sep 2023.</string>

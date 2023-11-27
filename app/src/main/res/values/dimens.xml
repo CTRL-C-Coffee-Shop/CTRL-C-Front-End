@@ -33,6 +33,7 @@
     <dimen name="spacing_160">160dp</dimen>
     <dimen name="spacing_170">170dp</dimen>
     <dimen name="spacing_180">180dp</dimen>
+    <dimen name="spacing_190">190dp</dimen>
     <dimen name="spacing_200">200dp</dimen>
     <dimen name="spacing_204">204dp</dimen>
     <dimen name="spacing_220">220dp</dimen>

@@ -11,11 +11,9 @@
     card_view:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +23,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginTop="12dp"
             android:orientation="vertical">
 
             <TextView
@@ -50,6 +50,7 @@
             android:id="@+id/tv_user_transaction_shop_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
             android:layout_marginTop="8dp"
             android:text="@string/transaction_location"
             android:textColor="@color/black"
@@ -58,7 +59,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_size_20"
+            android:layout_marginEnd="@dimen/text_size_20">
 
             <TextView
                 android:id="@+id/tv_user_transaction_date"
@@ -73,7 +76,7 @@
                 android:id="@+id/tv_user_transaction_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_180"
+                android:layout_marginStart="@dimen/spacing_170"
                 android:layout_marginTop="8dp"
                 android:gravity="end"
                 android:text="@string/transaction_time"
@@ -84,14 +87,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginStart="@dimen/spacing_16"
             android:layout_marginTop="@dimen/spacing_16"
+            android:layout_marginEnd="@dimen/spacing_16"
             android:background="@color/gray"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_transaction_status" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_20"
+            android:layout_marginEnd="@dimen/spacing_20">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -109,7 +116,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_204"
+                android:layout_marginStart="@dimen/spacing_190"
                 android:layout_marginTop="@dimen/spacing_12"
                 android:orientation="vertical">
 
@@ -127,6 +134,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/spacing_16"
+            android:layout_marginEnd="@dimen/spacing_20"
+            android:layout_marginBottom="16dp"
             android:text="@string/transaction_total"
             android:textColor="@color/black"
             android:textStyle="bold" />

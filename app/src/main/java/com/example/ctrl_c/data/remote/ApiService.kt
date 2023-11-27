@@ -60,4 +60,15 @@ interface ApiService {
         @Field("id") id: Int
     ): UserOrdersResponse
 
+    @FormUrlEncoded
+    @POST("/postcart")
+    suspend fun postCart(
+        @Header("Authorization") token: String,
+        @Field("UserID") userID: Int,
+        @Field("ProdID") productID: Int,
+        @Field("Amount") amount: Int,
+        @Field("Warmnth") warmth: Int,
+        @Field("Size") size: Int,
+        @Field("SugarLvl") sugarLvl: Int,
+    ): GeneralResponse
 }

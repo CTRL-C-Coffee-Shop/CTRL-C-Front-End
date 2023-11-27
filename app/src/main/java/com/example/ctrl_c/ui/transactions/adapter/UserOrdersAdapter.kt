@@ -25,8 +25,8 @@ class UserOrdersAdapter : RecyclerView.Adapter<UserOrdersAdapter.ListViewHolder>
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val orderStatus: String = currentList[position].status
         val shopLocation = currentList[position].kedai.name
-        val orderDate = currentList[position].date
-        val orderTime = currentList[position].idOrder
+        val orderDate = currentList[position].dateOnly
+        val orderTime = currentList[position].timeOnly
         val listOrder = getListOrder(position)
         val listPrice = getListPrice(position)
         val totalPrice = "Total:\t\t\t\tRp." + currentList[position].price.toString() + ".000"
@@ -34,7 +34,7 @@ class UserOrdersAdapter : RecyclerView.Adapter<UserOrdersAdapter.ListViewHolder>
         holder.tvStatus.text = orderStatus
         holder.tvShopLocation.text = shopLocation
         holder.tvDate.text = orderDate
-        holder.tvTime.text = orderTime.toString()
+        holder.tvTime.text = orderTime
         holder.tvListOrder.text = listOrder
         holder.tvListPrice.text = listPrice
         holder.tvTotalPrice.text = totalPrice

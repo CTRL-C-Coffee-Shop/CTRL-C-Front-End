@@ -23,13 +23,13 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: AdminOrderViewModel by viewModels { factory }
     private val adapter = AdminPageAdapter()
-
+    private var isRefreshing = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        swipeRefresh()
         setupViewModel()
         setupOrderList()
         initRecycleView()
@@ -117,12 +117,21 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
 
                     is Result.Success -> {
                         loadingHandler(false)
-                        Toast.makeText(this, "Success updating order status!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Success updating order status!", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
         }
     }
+
+    private fun swipeRefresh() {
+        binding.swipeRefresh.setOnRefreshListener {
+            isRefreshing = true
+            setupOrderList()
+        }
+    }
+
 
     private fun logout() {
         binding.button2.setOnClickListener {
@@ -143,6 +152,10 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
             binding.loadingAnimation.visibility = View.VISIBLE
         } else {
             binding.loadingAnimation.visibility = View.GONE
+            if (isRefreshing) {
+                binding.swipeRefresh.isRefreshing = false
+                isRefreshing = false
+            }
         }
     }
 }

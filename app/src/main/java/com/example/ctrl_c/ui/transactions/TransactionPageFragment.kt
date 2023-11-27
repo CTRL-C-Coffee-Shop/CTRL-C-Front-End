@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.ctrl_c.R
-import com.example.ctrl_c.databinding.FragmentHomeBinding
 import com.example.ctrl_c.databinding.FragmentTransactionPageBinding
+import com.example.ctrl_c.ui.transactions.adapter.UserOrdersAdapter
 
 class TransactionPageFragment : Fragment() {
 

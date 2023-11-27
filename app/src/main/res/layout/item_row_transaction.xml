@@ -139,5 +139,12 @@
             android:text="@string/transaction_total"
             android:textColor="@color/black"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_transaction_status" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

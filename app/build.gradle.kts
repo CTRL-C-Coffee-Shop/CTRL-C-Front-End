@@ -85,5 +85,8 @@ dependencies {
     //View Model
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
+    //Workmanager
+    implementation("androidx.work:work-runtime:2.8.1")
+    implementation("com.loopj.android:android-async-http:1.4.10")
 
 }

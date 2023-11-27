@@ -9,6 +9,7 @@ import com.example.ctrl_c.viewmodel.authetntication.login.LoginViewModel
 import com.example.ctrl_c.viewmodel.authetntication.register.RegisterViewModel
 import com.example.ctrl_c.viewmodel.order.AdminOrderViewModel
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
+import com.example.ctrl_c.viewmodel.transaction.TransactionViewModel
 
 class ViewModelFactory(private val repository: Repository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -29,6 +30,10 @@ class ViewModelFactory(private val repository: Repository) :
 
             modelClass.isAssignableFrom(AdminOrderViewModel::class.java) -> {
                 AdminOrderViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(TransactionViewModel::class.java) -> {
+                TransactionViewModel(repository) as T
             }
 
 

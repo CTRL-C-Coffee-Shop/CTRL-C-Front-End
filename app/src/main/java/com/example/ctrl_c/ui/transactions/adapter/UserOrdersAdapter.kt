@@ -42,23 +42,23 @@ class UserOrdersAdapter : RecyclerView.Adapter<UserOrdersAdapter.ListViewHolder>
 
     private fun getListPrice(position : Int) : String {
         var stringTemp = ""
-        for (i in 1..currentList[position].orderDetail.size) {
-            stringTemp += currentList[position].orderDetail[i].product.price.toString() + ".000\n"
+        for(orderDetailItem in currentList[position].orderDetail) {
+            stringTemp += orderDetailItem.product.price.toString() + ".000\n"
         }
         return stringTemp
     }
 
     private fun getListOrder(position : Int): String {
         var stringTemp = ""
-        for (i in 1..currentList[position].orderDetail.size) {
-            stringTemp += currentList[position].orderDetail[i].amount.toString() + "x " + currentList[position].orderDetail[i].product.name + "\n"
+        for (orderDetailItem in currentList[position].orderDetail) {
+            stringTemp += orderDetailItem.amount.toString() + " x " + orderDetailItem.product.name + "\n"
         }
         return stringTemp
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.menu_list, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_transaction, parent, false)
         return ListViewHolder(view)
     }
 

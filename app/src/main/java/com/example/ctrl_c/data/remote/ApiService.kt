@@ -53,7 +53,8 @@ interface ApiService {
         @Field("Order_Id") orderId:Int
     ):UpdateStatusOrderResponse
 
-    @POST("/orders")
+    @FormUrlEncoded
+    @POST("/getorder")
     suspend fun getAllOrder(
         @Header("Authorization") token: String,
         @Field("id") id: Int

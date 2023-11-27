@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class UserOrdersResponse(
 
+	@field:SerializedName("error")
+	val error: Boolean,
+
 	@field:SerializedName("orders")
 	val orders: List<OrdersItem>,
 

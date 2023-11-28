@@ -63,12 +63,12 @@
             android:text="@string/admin_order_id"
             android:textSize="@dimen/text_size_16"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/textView20"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_name_order_checkout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/tv_product_name_order_checkout"
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -88,12 +88,12 @@
             android:text="@string/admin_status"
             android:textSize="@dimen/text_size_16"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/textView21"
-            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_desc_order_checkout"
+            app:layout_constraintStart_toEndOf="@+id/tv_product_name_order_checkout"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/tv_product_desc_order_checkout"
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -113,7 +113,7 @@
             android:textSize="@dimen/text_size_16"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintStart_toEndOf="@+id/tv_product_desc_order_checkout"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <View

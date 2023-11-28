@@ -152,7 +152,7 @@
     <string name="ukuran_cup_text">Cup Size</string>
     <string name="regular_size_text">Regular</string>
     <string name="large_size_text">Large</string>
-    <string name="menu_qty">2</string>
+    <string name="menu_qty">Amount : 2</string>
     <string name="input_menu_price">Add Rp 50.000</string>
     <string name="iced_option">Iced</string>
     <string name="hot_option">Hot</string>
@@ -218,4 +218,6 @@
     <string name="order_name_checkout">Arabica</string>
     <string name="order_desc_checkout">"Large\nLess Ice "</string>
     <string name="order_price_checkout">Rp 50.000</string>
+    <string name="remove_all_product_from_cart">Remove All</string>
+    <string name="delete_product_from_cart">Remove Product</string>
 </resources>

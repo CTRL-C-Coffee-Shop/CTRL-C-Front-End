@@ -85,7 +85,7 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun updateAmount() {
-        binding.textView12.text = productAmount.toString()
+        binding.tvProductAmountOrderCheckout.text = productAmount.toString()
     }
 
     private fun updatePrice() {
@@ -94,12 +94,12 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
 
     private fun setupAction() {
         binding.apply {
-            materialButton9.setOnClickListener {
+            btnReduceAmountOrderCheckout.setOnClickListener {
                 decreaseAmount()
                 updateAmount()
                 updatePrice()
             }
-            materialButton10.setOnClickListener {
+            btnIncreaseAmountOrderCheckout.setOnClickListener {
                 increaseAmount()
                 updateAmount()
                 updatePrice()

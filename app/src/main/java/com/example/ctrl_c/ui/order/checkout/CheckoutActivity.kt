@@ -2,6 +2,7 @@ package com.example.ctrl_c.ui.order.checkout
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -23,7 +24,8 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: CartViewModel by viewModels { factory }
     private val adapter = OrderCheckoutAdapter()
-
+    private var totalPrice = 0
+    private var discount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -63,7 +65,11 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun setTotalPrice(){
-        binding.
+        totalPrice = adapter.getTotalPrice()
+        binding.apply {
+            textView18.text = "Rp. ${totalPrice}.000"
+            tvTotalPrice.text = "Rp. ${totalPrice}.000"
+        }
     }
 
     private fun setupAction(){

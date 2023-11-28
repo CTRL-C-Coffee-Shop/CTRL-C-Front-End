@@ -6,6 +6,8 @@ import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.data.remote.ApiService
 import com.example.ctrl_c.model.response.GeneralResponse
 import com.example.ctrl_c.model.response.authentication.LoginResponse
+import com.example.ctrl_c.model.response.cart.CartItem
+import com.example.ctrl_c.model.response.cart.CartResponse
 import com.example.ctrl_c.model.response.order.AdminGetOrderResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
@@ -148,6 +150,21 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
                 size,
                 sugarLvl
             )
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun getOrderInCart(userID: Int): LiveData<Result<CartResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.getCart("Bearer $token", userID)
             if (response.error) {
                 emit(Error(response.message))
             } else {

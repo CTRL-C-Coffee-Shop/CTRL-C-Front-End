@@ -2,6 +2,7 @@ package com.example.ctrl_c.data.remote
 
 import com.example.ctrl_c.model.response.GeneralResponse
 import com.example.ctrl_c.model.response.authentication.LoginResponse
+import com.example.ctrl_c.model.response.cart.CartResponse
 import com.example.ctrl_c.model.response.order.AdminGetOrderResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
@@ -49,9 +50,9 @@ interface ApiService {
     @POST("/updateorderstatus")
     suspend fun updateOrderStatus(
         @Header("Authorization") token: String,
-        @Field("Status") status:String,
-        @Field("Order_Id") orderId:Int
-    ):UpdateStatusOrderResponse
+        @Field("Status") status: String,
+        @Field("Order_Id") orderId: Int
+    ): UpdateStatusOrderResponse
 
     @FormUrlEncoded
     @POST("/getorder")
@@ -71,4 +72,11 @@ interface ApiService {
         @Field("Size") size: Int,
         @Field("SugarLvl") sugarLvl: Int,
     ): GeneralResponse
+
+    @FormUrlEncoded
+    @POST("getcart")
+    suspend fun getCart(
+        @Header("Authorization") token: String,
+        @Field("UserID") userID: Int
+    ): CartResponse
 }

@@ -20,29 +20,7 @@ class ReminderWorker(context: Context, workerParams: WorkerParameters) :
         const val CHANNEL_NAME = "CTRL+C channel"
     }
 
-//    private val sharedPreferences: SharedPreferences =
-//        context.getSharedPreferences("notification_pref", Context.MODE_PRIVATE)
-
     private var resultStatus: Result? = null
-
-//    override fun doWork(): Result {
-//
-//        val lastNotificationTime = sharedPreferences.getLong("last_notification_time", 0)
-//        val currentTime = System.currentTimeMillis()
-//
-//        //Changeable Timestamp
-//        if (currentTime - lastNotificationTime >= TimeUnit.SECONDS.toMillis(5)) {
-
-//            showNotification(title, desc)
-//
-//            with(sharedPreferences.edit()) {
-//                putLong("last_notification_time", currentTime)
-//                apply()
-//            }
-//        }
-//        return Result.success()
-//    }
-
 
     override fun doWork(): Result {
         // Check inactivity logic here

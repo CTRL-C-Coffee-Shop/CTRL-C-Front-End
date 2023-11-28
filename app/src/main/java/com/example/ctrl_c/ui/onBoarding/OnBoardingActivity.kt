@@ -4,17 +4,24 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import java.util.concurrent.TimeUnit
 import com.example.ctrl_c.R
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ItemOnBoardingBinding
+import com.example.ctrl_c.helper.ReminderWorker
 import com.example.ctrl_c.ui.admin.AdminPageActivity
 import com.example.ctrl_c.ui.authentication.login.LoginActivity
 import com.example.ctrl_c.ui.main.MainActivity
 import com.example.ctrl_c.ui.onBoarding.adapter.OnBoardingAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
+
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ItemOnBoardingBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ItemOnBoardingBinding.inflate(layoutInflater)
@@ -89,6 +96,7 @@ class OnBoardingActivity : AppCompatActivity() {
         val userTyoe = pref.getUserType()
         if (token != null) {
             if (!userTyoe) {
+                startApplicationReminder()
                 navigateToMainActivity()
             } else {
                 navigateToAdminActivity()
@@ -100,6 +108,15 @@ class OnBoardingActivity : AppCompatActivity() {
         val intent = Intent(this@OnBoardingActivity, AdminPageActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+    }
+
+    private fun startApplicationReminder() {
+        val workRequest = OneTimeWorkRequestBuilder<ReminderWorker>()
+            //Changeable Timestamp
+            .setInitialDelay(5, TimeUnit.SECONDS)
+            .build()
+
+        WorkManager.getInstance(this).enqueue(workRequest)
     }
 
     companion object {

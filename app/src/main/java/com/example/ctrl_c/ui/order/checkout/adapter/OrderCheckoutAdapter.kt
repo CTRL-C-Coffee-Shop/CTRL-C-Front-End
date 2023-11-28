@@ -39,13 +39,14 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
             .error(R.drawable.default_menu)
             .into(holder.ivImage)
 
-    }
-
-    fun getTotalPrice(): Int {
         for (cartItem in currentList) {
             val productPrice = cartItem.product.price * cartItem.amount
             totalPrice += productPrice
         }
+
+    }
+
+    fun getTotalPrice(): Int {
         return totalPrice
     }
 

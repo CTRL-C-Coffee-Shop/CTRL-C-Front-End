@@ -13,5 +13,5 @@ class CartViewModel(private val repository: Repository) : ViewModel() {
         sugarLvl: Int
     ) = repository.postOrderToCart(userID, productID, amount, warmth, size, sugarLvl)
 
-    fun getAllOrder(userID: Int) = repository.getOrderInCart(userID)
+    fun getOrderInCart(userID: Int) = repository.getOrderInCart(userID)
 }

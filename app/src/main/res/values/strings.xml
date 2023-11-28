@@ -218,4 +218,7 @@
     <string name="order_name_checkout">Arabica</string>
     <string name="order_desc_checkout">"Large\nLess Ice "</string>
     <string name="order_price_checkout">Rp 50.000</string>
+    <string name="notification_title">Ctrl-C Reminder</string>
+    <string name="notification_message">Feeling sluggish? Need a coffee? Don\'t worry! \n Buy our finest coffee beans to brighten up your day!</string>
+    <string name="notification_subtext">Reminder</string>
 </resources>

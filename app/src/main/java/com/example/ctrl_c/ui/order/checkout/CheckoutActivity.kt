@@ -27,6 +27,8 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private var discount = 0
     private var totalPrice = 0
     private var isRefreshing = false
+    private var storeLocation: Int = 0
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -36,8 +38,10 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         setupViewModel()
         setupGetAllOrdersAPI()
         initRecyclerView()
+        getStoreLocationFromIntent()
         setupAction()
         setTotalPrice(totalPrice)
+        Toast.makeText(this, "ini store locationnya : $storeLocation", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupAction() {
@@ -157,10 +161,19 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         }
     }
 
+    private fun getStoreLocationFromIntent() {
+        storeLocation = intent.getIntExtra("storeLocation",0)
+    }
+
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun createOrder(){
+        val pref = UserPreference(this)
+        val userId = pref.getUserId()
     }
 
     override fun onBackPressed() {

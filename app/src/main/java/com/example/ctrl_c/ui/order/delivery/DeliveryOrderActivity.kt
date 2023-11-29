@@ -34,7 +34,8 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: ProductViewModel by viewModels { factory }
     private val adapter = ProductAdapter()
-    private var storeLocation: String = ""
+    private var storeLocation: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDeliveryOrderBinding.inflate(layoutInflater)
@@ -182,7 +183,7 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                     //save storeLocation into variable
-                                    storeLocation = itemSelected.toString()
+                                    storeLocation = position + 1
 
                                 }
                         }

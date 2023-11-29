@@ -34,7 +34,7 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
     private var drinkType: Int = 0
     private var cupSize: Int = 0
     private var sweetnessLevel: Int = 0
-    private var storeLocation: String? = ""
+    private var storeLocation: Int? = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
 
 
     private fun getStoreLocationFromIntent() {
-        storeLocation = intent.getStringExtra("storeLocation")
+        storeLocation = intent.getIntExtra("storeLocation",0)
     }
 
     private fun setupDetailedProduct() {
@@ -189,6 +189,7 @@ class DetailMenuActivity : AppCompatActivity(), LoadingHandler {
     private fun navigateToCheckOutPage() {
         val intent = Intent(this@DetailMenuActivity, CheckoutActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra("storeLocation", storeLocation)
         startActivity(intent)
     }
 

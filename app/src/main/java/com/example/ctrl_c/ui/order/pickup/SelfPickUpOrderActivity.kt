@@ -25,6 +25,7 @@ class SelfPickUpOrderActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: ProductViewModel by viewModels { factory }
     private val adapter = ProductAdapter()
+    private var storeLocation: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelfPickUpOrderBinding.inflate(layoutInflater)
@@ -110,6 +111,7 @@ class SelfPickUpOrderActivity : AppCompatActivity(), LoadingHandler {
                                         "You Choose $itemSelected for the store's location",
                                         Toast.LENGTH_SHORT
                                     ).show()
+                                    storeLocation = position + 1
                                 }
                         }
                     }
@@ -130,6 +132,7 @@ class SelfPickUpOrderActivity : AppCompatActivity(), LoadingHandler {
     private fun showSelectedProduct(data: ProductItem) {
         val intent = Intent(this, DetailMenuActivity::class.java)
         intent.putExtra("product", data)
+        intent.putExtra("storeLocation", storeLocation)
         startActivity(intent)
     }
 

@@ -19,4 +19,26 @@ class CartViewModel(private val repository: Repository) : ViewModel() {
 
     fun deleteItemInCart(userID: Int, productID: Int) =
         repository.deleteItemInCart(userID, productID)
+
+    fun createOrder(
+        userID: Int,
+        storeID: Int,
+        voucherID: Int,
+        totalPrice: Int,
+        productID: List<Int>,
+        productAmount: List<Int>,
+        productWarmth: List<Int>,
+        productSize: List<Int>,
+        productSugarLvl: List<Int>
+    ) = repository.createOrder(
+        userID,
+        storeID,
+        voucherID,
+        totalPrice,
+        productID,
+        productAmount,
+        productWarmth,
+        productSize,
+        productSugarLvl
+    )
 }

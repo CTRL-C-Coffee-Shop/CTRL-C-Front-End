@@ -6,7 +6,6 @@ import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.data.remote.ApiService
 import com.example.ctrl_c.model.response.GeneralResponse
 import com.example.ctrl_c.model.response.authentication.LoginResponse
-import com.example.ctrl_c.model.response.cart.CartItem
 import com.example.ctrl_c.model.response.cart.CartResponse
 import com.example.ctrl_c.model.response.order.AdminGetOrderResponse
 import com.example.ctrl_c.model.response.product.ProductResponse
@@ -205,6 +204,42 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
                 emit(Error(e.message.toString()))
             }
         }
+
+    fun createOrder(
+        userID: Int,
+        storeID: Int,
+        voucherID: Int,
+        totalPrice: Int,
+        productID: List<Int>,
+        productAmount: List<Int>,
+        productWarmth: List<Int>,
+        productSize: List<Int>,
+        productSugarLvl: List<Int>
+    ): LiveData<Result<GeneralResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.createOrder(
+                "Bearer $token",
+                userID,
+                storeID,
+                voucherID,
+                totalPrice,
+                productID,
+                productAmount,
+                productWarmth,
+                productSize,
+                productSugarLvl
+            )
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
 
     companion object {
         @Volatile

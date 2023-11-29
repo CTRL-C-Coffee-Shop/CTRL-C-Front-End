@@ -14,6 +14,7 @@ import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.main.MainActivity
 import com.example.ctrl_c.ui.order.checkout.adapter.OrderCheckoutAdapter
+import com.example.ctrl_c.ui.payment.PaymentActivity
 import com.example.ctrl_c.ui.voucher.VoucherListActivity
 import com.example.ctrl_c.viewmodel.cart.CartViewModel
 
@@ -60,9 +61,9 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             buttonCreateOrder.setOnClickListener {
                 createOrder()
                 removeAllItemsFromCart()
-                navigateToMainActivity()
+                navigateToPaymentAnimation()
             }
-            voucherButton.setOnClickListener{
+            voucherButton.setOnClickListener {
                 navigateToVoucherActivity()
             }
 
@@ -76,17 +77,19 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         })
     }
 
-    private fun navigateToMainActivity(){
-        val intent = Intent(this@CheckoutActivity, MainActivity::class.java)
+
+    private fun navigateToPaymentAnimation() {
+        val intent = Intent(this@CheckoutActivity, PaymentActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
+
     private fun swipeRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             isRefreshing = true
             setupGetAllOrdersAPI()
             setTotalPrice(0)
-            priceAfterDiscount= 0
+            priceAfterDiscount = 0
         }
     }
 
@@ -123,13 +126,14 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
 
     private fun getVoucher() {
         voucherId = intent.getIntExtra("idVoucher", 1)
-        discountPercentage = intent.getIntExtra("discount",10)
+        discountPercentage = intent.getIntExtra("discount", 10)
     }
 
-    private fun navigateToVoucherActivity(){
+    private fun navigateToVoucherActivity() {
         val intent = Intent(this@CheckoutActivity, VoucherListActivity::class.java)
         startActivity(intent)
     }
+
     private fun removeAllItemsFromCart() {
         val pref = UserPreference(this)
         val userId = pref.getUserId()
@@ -181,7 +185,8 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                         loadingHandler(false)
                         adapter.setCartData(result.data.cart)
                         totalPrice = adapter.totalPrice
-                        priceAfterDiscount = adapter.totalPrice - (totalPrice * discountPercentage/100)
+                        priceAfterDiscount =
+                            adapter.totalPrice - (totalPrice * discountPercentage / 100)
                         setTotalPrice(priceAfterDiscount)
 
                         val cartItems = result.data.cart
@@ -201,7 +206,8 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
 
     private fun setTotalPrice(priceAfterDiscount: Int) {
         binding.apply {
-            textView18.text = "Rp. ${totalPrice}.000 \n - Rp. ${(totalPrice * discountPercentage/100)}.000"
+            textView18.text =
+                "Rp. ${totalPrice}.000 \n - Rp. ${(totalPrice * discountPercentage / 100)}.000"
             tvTotalPrice.text = "Rp. ${priceAfterDiscount}.000"
         }
     }

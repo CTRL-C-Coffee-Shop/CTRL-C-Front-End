@@ -41,4 +41,5 @@ class CartViewModel(private val repository: Repository) : ViewModel() {
         productSize,
         productSugarLvl
     )
+    fun getAllVouchers() = repository.getAllVouchers()
 }

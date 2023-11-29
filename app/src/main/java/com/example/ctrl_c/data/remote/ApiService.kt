@@ -8,6 +8,8 @@ import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
 import com.example.ctrl_c.model.response.updateOrderStatus.UpdateStatusOrderResponse
 import com.example.ctrl_c.model.response.userOrder.UserOrdersResponse
+import com.example.ctrl_c.model.response.voucher.VouchersResponse
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -111,4 +113,8 @@ interface ApiService {
     ): GeneralResponse
 
 
+    @GET("/getvoucher")
+    suspend fun getAllVouchers(
+        @Header("Authorization") token: String
+    ): VouchersResponse
 }

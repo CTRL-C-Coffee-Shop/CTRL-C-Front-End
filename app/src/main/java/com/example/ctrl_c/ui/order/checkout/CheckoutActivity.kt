@@ -33,6 +33,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private var productSizeList = mutableListOf<Int>()
     private var productSugarLvlList = mutableListOf<Int>()
 
+    private var voucherId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -102,6 +103,10 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                 }
             }
         }
+    }
+
+    private fun getVoucher() {
+        voucherId = intent.getIntExtra("idVoucher", 0)
     }
 
     private fun removeAllItemsFromCart() {

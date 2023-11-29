@@ -12,6 +12,7 @@ import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
 import com.example.ctrl_c.model.response.updateOrderStatus.UpdateStatusOrderResponse
 import com.example.ctrl_c.model.response.userOrder.UserOrdersResponse
+import com.example.ctrl_c.model.response.voucher.VouchersResponse
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.model.result.Result.Error
 import com.example.ctrl_c.model.result.Result.Loading
@@ -240,6 +241,21 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
             emit(Error(e.message.toString()))
         }
     }
+    fun getAllVouchers(): LiveData<Result<VouchersResponse>> =
+        liveData {
+            emit(Loading)
+            val token = pref.getToken()
+            try {
+                val response = apiService.getAllVouchers("Bearer $token")
+                if (response.error) {
+                    emit(Error(response.message))
+                } else {
+                    emit(Success(response))
+                }
+            } catch (e: Exception) {
+                emit(Error(e.message.toString()))
+            }
+        }
 
     companion object {
         @Volatile

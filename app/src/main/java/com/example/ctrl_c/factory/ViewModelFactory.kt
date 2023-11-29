@@ -11,6 +11,7 @@ import com.example.ctrl_c.viewmodel.cart.CartViewModel
 import com.example.ctrl_c.viewmodel.order.AdminOrderViewModel
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.example.ctrl_c.viewmodel.transaction.TransactionViewModel
+import com.example.ctrl_c.viewmodel.voucher.VoucherViewModel
 
 class ViewModelFactory(private val repository: Repository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -41,6 +42,9 @@ class ViewModelFactory(private val repository: Repository) :
                 CartViewModel(repository) as T
             }
 
+            modelClass.isAssignableFrom(VoucherViewModel::class.java) -> {
+                VoucherViewModel(repository) as T
+            }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

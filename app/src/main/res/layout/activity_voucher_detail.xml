@@ -44,14 +44,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_detailed_voucher_image"
         android:layout_width="match_parent"
         android:layout_height="175dp"
         android:src="@color/gray"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_detailed_voucher_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -61,17 +61,17 @@
         android:textSize="@dimen/text_size_20"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detailed_voucher_image" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tv_detailed_voucher_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/voucher_desc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detailed_voucher_name" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -82,7 +82,7 @@
         android:background="@color/light_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13">
+        app:layout_constraintTop_toBottomOf="@+id/tv_detailed_voucher_desc">
 
         <ImageView
             android:id="@+id/imageView"
@@ -163,6 +163,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/btn_use_voucher"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@drawable/rectangle_button"

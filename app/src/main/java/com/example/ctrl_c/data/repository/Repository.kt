@@ -175,6 +175,37 @@ class Repository(private val pref: UserPreference, private val apiService: ApiSe
         }
     }
 
+    fun deleteAllItemsInCart(userID: Int): LiveData<Result<GeneralResponse>> = liveData {
+        emit(Loading)
+        val token = pref.getToken()
+        try {
+            val response = apiService.deleteAllCart("Bearer $token", userID)
+            if (response.error) {
+                emit(Error(response.message))
+            } else {
+                emit(Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Error(e.message.toString()))
+        }
+    }
+
+    fun deleteItemInCart(userID: Int, productID: Int): LiveData<Result<GeneralResponse>> =
+        liveData {
+            emit(Loading)
+            val token = pref.getToken()
+            try {
+                val response = apiService.deleteCart("Bearer $token", userID, productID)
+                if (response.error) {
+                    emit(Error(response.message))
+                } else {
+                    emit(Success(response))
+                }
+            } catch (e: Exception) {
+                emit(Error(e.message.toString()))
+            }
+        }
+
     companion object {
         @Volatile
         private var instance: Repository? = null

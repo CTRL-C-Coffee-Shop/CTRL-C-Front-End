@@ -24,7 +24,6 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: CartViewModel by viewModels { factory }
     private val adapter = OrderCheckoutAdapter()
-    private var totalPrice = 0
     private var discount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +33,45 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         setupViewModel()
         initRecyclerView()
         setupGetAllOrdersAPI()
+        setupAction()
     }
 
+    private fun setupAction() {
+        binding.apply {
+            btnRemoveAllProductsFromCart.setOnClickListener{
+                removeAllItemsFromCart()
+            }
+        }
+    }
+
+    private fun removeAllItemsFromCart() {
+        val pref = UserPreference(this)
+        val userId = pref.getUserId()
+
+        viewModel.deleteAllItemsInCart(userId).observe(this) {
+            it?.let { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this, "Failed to delete products from cart ", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this, "All items have been removed from the cart ", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+    }
 
     private fun setupGetAllOrdersAPI() {
         val pref = UserPreference(this)
@@ -50,7 +86,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Error -> {
                         loadingHandler(false)
                         Toast.makeText(
-                            this, "Failed to fetch proudct data", Toast.LENGTH_SHORT
+                            this, "Failed to fetch product data", Toast.LENGTH_SHORT
                         ).show()
                     }
 
@@ -95,4 +131,5 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             binding.loadingAnimation.visibility = View.GONE
         }
     }
+
 }

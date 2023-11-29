@@ -8,6 +8,7 @@ import com.example.ctrl_c.model.response.product.ProductResponse
 import com.example.ctrl_c.model.response.stores.StoresResponse
 import com.example.ctrl_c.model.response.updateOrderStatus.UpdateStatusOrderResponse
 import com.example.ctrl_c.model.response.userOrder.UserOrdersResponse
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -79,4 +80,19 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Field("UserID") userID: Int
     ): CartResponse
+
+    @FormUrlEncoded
+    @POST("/deletecart")
+    fun deleteCart(
+        @Header("Authorization") token: String,
+        @Field("UserID") userID: Int,
+        @Field("ProdID") prodID: Int
+    ): GeneralResponse
+
+    @FormUrlEncoded
+    @POST("/deleteallcart")
+    fun deleteAllCart(
+        @Header("Authorization") token: String,
+        @Field("UserID") userID: Int,
+    ): GeneralResponse
 }

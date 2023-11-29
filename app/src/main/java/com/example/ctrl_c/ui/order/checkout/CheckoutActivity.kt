@@ -58,8 +58,9 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Error -> {
                         loadingHandler(false)
                         Toast.makeText(
-                            this, "Failed to delete products from cart ", Toast.LENGTH_SHORT
+                            this, "Failed to delete products from cart  ", Toast.LENGTH_SHORT
                         ).show()
+                        Log.d("ASIDJAISDJA", "removeAllItemsFromCart: $result ")
                     }
 
                     is Result.Success -> {

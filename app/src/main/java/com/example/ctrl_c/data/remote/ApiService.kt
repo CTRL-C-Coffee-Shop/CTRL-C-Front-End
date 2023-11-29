@@ -91,8 +91,10 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("/deleteallcart")
-    fun deleteAllCart(
+    suspend fun deleteAllCart(
         @Header("Authorization") token: String,
-        @Field("UserID") userID: Int,
+        @Field("UserID") userID: Int
     ): GeneralResponse
+
+
 }

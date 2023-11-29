@@ -19,4 +19,6 @@ class CartViewModel(private val repository: Repository) : ViewModel() {
 
     fun deleteItemInCart(userID: Int, productID: Int) =
         repository.deleteItemInCart(userID, productID)
+
+    fun getAllVouchers() = repository.getAllVouchers()
 }

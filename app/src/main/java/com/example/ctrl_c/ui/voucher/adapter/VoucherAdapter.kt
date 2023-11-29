@@ -1,23 +1,52 @@
 package com.example.ctrl_c.ui.voucher.adapter
 
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ctrl_c.R
+import com.example.ctrl_c.model.response.voucher.VouchersItem
 
 class VoucherAdapter: RecyclerView.Adapter<VoucherAdapter.ListViewHolder>()  {
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private var currentList: List<VouchersItem> = emptyList()
+    private lateinit var onItemClickCallback: OnItemClickCallBack
 
+    interface OnItemClickCallBack {
+        fun onItemClicked(data: VouchersItem)
+    }
+
+    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvVoucherName: TextView = itemView.findViewById(R.id.tv_voucher_name)
+        val tvVoucherImage: ImageView = itemView.findViewById(R.id.iv_voucher_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        TODO("Not yet implemented")
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_transaction, parent, false)
+        return ListViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = currentList.size
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val voucherName  = currentList[position].name
+
+        holder.tvVoucherName.text = voucherName
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(currentList[holder.adapterPosition])
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setVoucherData(vouchers: List<VouchersItem>) {
+        currentList = vouchers
+        notifyDataSetChanged()
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallBack) {
+        this.onItemClickCallback = onItemClickCallback
     }
 }

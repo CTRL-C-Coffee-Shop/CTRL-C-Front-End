@@ -25,6 +25,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private val viewModel: CartViewModel by viewModels { factory }
     private val adapter = OrderCheckoutAdapter()
     private var discount = 0
+    private var voucherId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -42,6 +43,10 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                 removeAllItemsFromCart()
             }
         }
+    }
+
+    private fun getVoucher() {
+        voucherId = intent.getIntExtra("idVoucher", 0)
     }
 
     private fun removeAllItemsFromCart() {

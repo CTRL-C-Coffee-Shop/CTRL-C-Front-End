@@ -189,7 +189,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_create_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/text_size_16"

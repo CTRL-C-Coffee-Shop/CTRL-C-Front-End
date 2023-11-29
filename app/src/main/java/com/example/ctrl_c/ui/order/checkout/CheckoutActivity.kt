@@ -2,7 +2,6 @@ package com.example.ctrl_c.ui.order.checkout
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -27,8 +26,13 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private var discount = 0
     private var totalPrice = 0
     private var isRefreshing = false
-    private var storeLocation: Int = 0
-    
+    private var storeLocation: Int = 1
+    private var productIdList = mutableListOf<Int>()
+    private var productAmountList = mutableListOf<Int>()
+    private var productWarmthList = mutableListOf<Int>()
+    private var productSizeList = mutableListOf<Int>()
+    private var productSugarLvlList = mutableListOf<Int>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -41,13 +45,15 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         getStoreLocationFromIntent()
         setupAction()
         setTotalPrice(totalPrice)
-        Toast.makeText(this, "ini store locationnya : $storeLocation", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupAction() {
         binding.apply {
             btnRemoveAllProductsFromCart.setOnClickListener {
                 removeAllItemsFromCart()
+            }
+            buttonCreateOrder.setOnClickListener {
+                createOrder()
             }
         }
         adapter.setOnItemClickListener(object : OrderCheckoutAdapter.OnItemClickListener {
@@ -88,7 +94,9 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Success -> {
                         loadingHandler(false)
                         Toast.makeText(
-                            this, "Product have been removed successfully from the cart ", Toast.LENGTH_SHORT
+                            this,
+                            "Product have been removed successfully from the cart ",
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
@@ -148,6 +156,16 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                         adapter.setCartData(result.data.cart)
                         totalPrice = adapter.totalPrice
                         setTotalPrice(totalPrice)
+
+                        val cartItems = result.data.cart
+                        cartItems.forEach { cartItem ->
+                            productIdList.add(cartItem.product.id)
+                            productAmountList.add(cartItem.amount)
+                            productWarmthList.add(cartItem.warmth.toInt())
+                            productSizeList.add(cartItem.size.toInt())
+                            productSugarLvlList.add(cartItem.sugarLvl.toInt())
+                        }
+
                     }
                 }
             }
@@ -162,7 +180,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun getStoreLocationFromIntent() {
-        storeLocation = intent.getIntExtra("storeLocation",0)
+        storeLocation = intent.getIntExtra("storeLocation", 1)
     }
 
     private fun initRecyclerView() {
@@ -171,9 +189,43 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun createOrder(){
+    private fun createOrder() {
         val pref = UserPreference(this)
         val userId = pref.getUserId()
+        viewModel.createOrder(
+            userId,
+            storeLocation,
+            1,
+            totalPrice,
+            productIdList,
+            productAmountList,
+            productWarmthList,
+            productSizeList,
+            productSugarLvlList
+        ).observe(this) {
+            it?.let { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this, "Failed to create order", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this, "Success creating Order! ", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+
     }
 
     override fun onBackPressed() {

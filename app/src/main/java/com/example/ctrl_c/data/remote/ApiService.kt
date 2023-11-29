@@ -103,11 +103,11 @@ interface ApiService {
         @Field("id_kedai") storeID: Int,
         @Field("id_voucher") voucherID: Int,
         @Field("total") totalPrice: Int,
-        @Field("productID") productID: List<Int>,
-        @Field("amount") productAmount: List<Int>,
-        @Field("warmth") productWarmth: List<Int>,
-        @Field("size") productSize: List<Int>,
-        @Field("sugarLvl") productSugarLvl: List<Int>
+        @Field("productID[]") productID: List<Int>,
+        @Field("amount[]") productAmount: List<Int>,
+        @Field("warmth[]") productWarmth: List<Int>,
+        @Field("size[]") productSize: List<Int>,
+        @Field("sugarLvl[]") productSugarLvl: List<Int>
     ): GeneralResponse
 
 

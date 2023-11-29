@@ -8,16 +8,16 @@ import com.google.gson.annotations.SerializedName
 data class CartItem(
 
 	@field:SerializedName("SugarLvl")
-	val sugarLvl: String,
+	val sugarLvl: Int,
 
 	@field:SerializedName("Size")
-	val size: String,
+	val size: Int,
 
 	@field:SerializedName("Amount")
 	val amount: Int,
 
 	@field:SerializedName("Warmth")
-	val warmth: String,
+	val warmth: Int,
 
 	@field:SerializedName("Product")
 	val product: Product

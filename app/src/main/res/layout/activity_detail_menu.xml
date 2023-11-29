@@ -231,7 +231,7 @@
             app:layout_constraintTop_toBottomOf="@+id/radioGroupSweetness" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton9"
+            android:id="@+id/btn_reduce_amount_order_checkout"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -251,19 +251,19 @@
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tv_product_amount_order_checkout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/menu_qty"
             android:textSize="@dimen/text_size_28"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/materialButton10"
-            app:layout_constraintStart_toEndOf="@+id/materialButton9"
+            app:layout_constraintEnd_toStartOf="@+id/btn_increase_amount_order_checkout"
+            app:layout_constraintStart_toEndOf="@+id/btn_reduce_amount_order_checkout"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton10"
+            android:id="@+id/btn_increase_amount_order_checkout"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -276,7 +276,7 @@
             app:iconPadding="0dp"
             app:iconSize="24dp"
             app:layout_constraintEnd_toStartOf="@+id/button"
-            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintStart_toEndOf="@+id/tv_product_amount_order_checkout"
             app:layout_constraintTop_toBottomOf="@+id/view2"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button" />
 

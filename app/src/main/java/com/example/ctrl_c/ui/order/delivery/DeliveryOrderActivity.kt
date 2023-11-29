@@ -34,6 +34,7 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: ProductViewModel by viewModels { factory }
     private val adapter = ProductAdapter()
+    private var storeLocation: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDeliveryOrderBinding.inflate(layoutInflater)
@@ -180,6 +181,9 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
                                         "You Choose $itemSelected for the store's location",
                                         Toast.LENGTH_SHORT
                                     ).show()
+                                    //save storeLocation into variable
+                                    storeLocation = itemSelected.toString()
+
                                 }
                         }
                     }
@@ -204,6 +208,7 @@ class DeliveryOrderActivity : AppCompatActivity(), LoadingHandler {
     private fun showSelectedProduct(data: ProductItem) {
         val intent = Intent(this, DetailMenuActivity::class.java)
         intent.putExtra("product", data)
+        intent.putExtra("storeLocation", storeLocation)
         startActivity(intent)
     }
 

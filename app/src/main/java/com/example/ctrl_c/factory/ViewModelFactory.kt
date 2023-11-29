@@ -7,6 +7,7 @@ import com.example.ctrl_c.data.repository.Repository
 import com.example.ctrl_c.di.Injection
 import com.example.ctrl_c.viewmodel.authetntication.login.LoginViewModel
 import com.example.ctrl_c.viewmodel.authetntication.register.RegisterViewModel
+import com.example.ctrl_c.viewmodel.cart.CartViewModel
 import com.example.ctrl_c.viewmodel.order.AdminOrderViewModel
 import com.example.ctrl_c.viewmodel.product.ProductViewModel
 import com.example.ctrl_c.viewmodel.transaction.TransactionViewModel
@@ -34,6 +35,10 @@ class ViewModelFactory(private val repository: Repository) :
 
             modelClass.isAssignableFrom(TransactionViewModel::class.java) -> {
                 TransactionViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(CartViewModel::class.java) -> {
+                CartViewModel(repository) as T
             }
 
 

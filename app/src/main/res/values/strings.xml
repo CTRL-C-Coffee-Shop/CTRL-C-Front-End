@@ -221,4 +221,7 @@
     <string name="notification_title">Ctrl-C Reminder</string>
     <string name="notification_message">Feeling sluggish? Need a coffee? Don\'t worry!\nBuy our finest coffee beans to brighten up your day!</string>
     <string name="notification_subtext">Reminder</string>
+    <string name="remove_all_product_from_cart">Remove All</string>
+    <string name="delete_product_from_cart">Remove Product</string>
+    <string name="discount_vouchers_title">Discount Vouchers</string>
 </resources>

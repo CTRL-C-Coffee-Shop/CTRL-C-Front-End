@@ -307,8 +307,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/check/baseline_check_24.xml" />
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/wallet/baseline_wallet_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/shopping_cart/baseline_shopping_cart_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -318,9 +317,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_check" />
-                            <entry key="color" value="433117" />
-                            <entry key="outputName" value="ic_wallet" />
+                            <entry key="color" value="48444e" />
+                            <entry key="outputName" value="baseline_shopping_cart_24" />
                             <entry key="sourceFile" value="F:\Android Studio Projects\CTRL-C-Front-End" />
                           </map>
                         </option>

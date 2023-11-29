@@ -34,21 +34,6 @@ class AdminPageActivity : AppCompatActivity(), LoadingHandler {
         setupOrderList()
         initRecycleView()
         setupAction()
-//
-//        val pref = UserPreference(this)
-//        val result = pref.getToken()
-//        Toast.makeText(this, "ini tokennya $result", Toast.LENGTH_SHORT).show()
-//        with(binding) {
-//            searchView.setupWithSearchBar(searchBar)
-//            searchView
-//                .editText
-//                .setOnEditorActionListener { textView, actionId, event ->
-//                    searchBar.text = searchView.text
-//                    searchView.hide()
-//                    Toast.makeText(this@AdminPageActivity, searchView.text, Toast.LENGTH_SHORT).show()
-//                    false
-//                }
-//        }
     }
 
     private fun setupViewModel() {

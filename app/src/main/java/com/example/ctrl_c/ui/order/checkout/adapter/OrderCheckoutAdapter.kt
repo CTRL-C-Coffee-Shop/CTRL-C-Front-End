@@ -14,7 +14,7 @@ import com.example.ctrl_c.model.response.cart.CartItem
 
 class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewHolder>() {
     private var currentList: List<CartItem> = emptyList()
-    private var totalPrice = 0
+    var totalPrice = 0
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tv_product_name_order_checkout_cart)
         val tvDesc: TextView = itemView.findViewById(R.id.tv_product_desc_order_checkout_cart)
@@ -39,15 +39,6 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
             .error(R.drawable.default_menu)
             .into(holder.ivImage)
 
-        for (cartItem in currentList) {
-            val productPrice = cartItem.product.price * cartItem.amount
-            totalPrice += productPrice
-        }
-
-    }
-
-    fun getTotalPrice(): Int {
-        return totalPrice
     }
 
     override fun onCreateViewHolder(
@@ -55,7 +46,8 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
         viewType: Int
     ): ListViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_row_order_checkout, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_row_order_checkout, parent, false)
         return ListViewHolder(view)
     }
 
@@ -64,6 +56,13 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
     @SuppressLint("NotifyDataSetChanged")
     fun setCartData(carts: List<CartItem>) {
         currentList = carts
+
+        totalPrice = 0
+        for (cartItem in currentList) {
+            val productPrice = cartItem.product.price * cartItem.amount
+            totalPrice += productPrice
+        }
+
         notifyDataSetChanged()
     }
 }

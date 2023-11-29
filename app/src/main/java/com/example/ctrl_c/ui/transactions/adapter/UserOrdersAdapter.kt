@@ -23,7 +23,7 @@ class UserOrdersAdapter : RecyclerView.Adapter<UserOrdersAdapter.ListViewHolder>
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val orderStatus: String = currentList[position].status
+        val orderStatus= currentList[position].status
         val shopLocation = currentList[position].kedai.name
         val orderDate = currentList[position].dateOnly
         val orderTime = currentList[position].timeOnly

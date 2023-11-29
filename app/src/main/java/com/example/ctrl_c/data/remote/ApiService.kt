@@ -74,7 +74,7 @@ interface ApiService {
     ): GeneralResponse
 
     @FormUrlEncoded
-    @POST("getcart")
+    @POST("/getcart")
     suspend fun getCart(
         @Header("Authorization") token: String,
         @Field("UserID") userID: Int

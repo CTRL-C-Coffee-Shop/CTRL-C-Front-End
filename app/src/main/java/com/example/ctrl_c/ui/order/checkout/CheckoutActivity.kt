@@ -34,7 +34,6 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         setupViewModel()
         initRecyclerView()
         setupGetAllOrdersAPI()
-        setupAction()
     }
 
 
@@ -58,23 +57,20 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Success -> {
                         loadingHandler(false)
                         adapter.setCartData(result.data.cart)
+                        setTotalPrice(adapter.totalPrice)
                     }
                 }
             }
         }
     }
 
-    private fun setTotalPrice(){
-        totalPrice = adapter.getTotalPrice()
+    private fun setTotalPrice(totalPrice: Int){
         binding.apply {
             textView18.text = "Rp. ${totalPrice}.000"
             tvTotalPrice.text = "Rp. ${totalPrice}.000"
         }
     }
 
-    private fun setupAction(){
-        setTotalPrice()
-    }
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager

@@ -83,7 +83,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("/deletecart")
-    fun deleteCart(
+    suspend fun deleteCart(
         @Header("Authorization") token: String,
         @Field("UserID") userID: Int,
         @Field("ProdID") prodID: Int

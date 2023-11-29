@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,9 @@ import com.example.ctrl_c.R
 import com.example.ctrl_c.model.response.cart.CartItem
 
 class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewHolder>() {
-    private var currentList: List<CartItem> = emptyList()
+    var currentList: List<CartItem> = emptyList()
     var totalPrice = 0
+    private var listener: OnItemClickListener? = null
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tv_product_name_order_checkout_cart)
@@ -21,6 +23,7 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
         val tvPrice: TextView = itemView.findViewById(R.id.tv_product_price_order_checkout_cart)
         val tvAmount: TextView = itemView.findViewById(R.id.tv_product_amount_order_checkout_cart)
         val ivImage: ImageView = itemView.findViewById(R.id.tv_product_image_order_checkout_cart)
+        val btnDelete: Button = itemView.findViewById(R.id.btn_delete_cart_item)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
@@ -39,6 +42,10 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
             .error(R.drawable.default_menu)
             .into(holder.ivImage)
 
+        holder.btnDelete.setOnClickListener {
+            listener?.onDeleteClick(position)
+        }
+
     }
 
     override fun onCreateViewHolder(
@@ -52,6 +59,13 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
     }
 
     override fun getItemCount(): Int = currentList.size
+
+    interface OnItemClickListener {
+        fun onDeleteClick(position: Int)
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCartData(carts: List<CartItem>) {
@@ -68,5 +82,12 @@ class OrderCheckoutAdapter : RecyclerView.Adapter<OrderCheckoutAdapter.ListViewH
     fun clearCartData() {
         currentList = emptyList()
         notifyDataSetChanged()
+    }
+
+    fun updateCartData(position: Int){
+        val mutableList = currentList.toMutableList()
+        mutableList.removeAt(position)
+        currentList = mutableList.toList()
+        notifyItemRemoved(position)
     }
 }

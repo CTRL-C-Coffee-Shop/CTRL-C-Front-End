@@ -46,6 +46,13 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                 removeAllItemsFromCart()
             }
         }
+        adapter.setOnItemClickListener(object : OrderCheckoutAdapter.OnItemClickListener {
+            override fun onDeleteClick(position: Int) {
+                val itemToDelete = adapter.currentList[position].product.id
+                deleteItemFromCart(itemToDelete)
+                adapter.updateCartData(position)
+            }
+        })
     }
 
     private fun swipeRefresh() {
@@ -53,6 +60,35 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             isRefreshing = true
             setupGetAllOrdersAPI()
             setTotalPrice(0)
+        }
+    }
+
+    private fun deleteItemFromCart(itemId: Int) {
+        val pref = UserPreference(this)
+        val userId = pref.getUserId()
+
+        viewModel.deleteItemInCart(userId, itemId).observe(this) {
+            it?.let { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        loadingHandler(true)
+                    }
+
+                    is Result.Error -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this, "Failed to remove products from cart  ", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is Result.Success -> {
+                        loadingHandler(false)
+                        Toast.makeText(
+                            this, "Product have been removed successfully from the cart ", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
     }
 
@@ -72,7 +108,6 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                         Toast.makeText(
                             this, "Failed to delete products from cart  ", Toast.LENGTH_SHORT
                         ).show()
-                        Log.d("ASIDJAISDJA", "removeAllItemsFromCart: $result ")
                     }
 
                     is Result.Success -> {

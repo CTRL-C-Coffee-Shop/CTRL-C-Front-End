@@ -22,10 +22,9 @@ class PaymentActivity : AppCompatActivity() {
 
     private fun setupAnimation() {
         Handler().postDelayed({
-            // Intent untuk beralih ke activity baru
             navigateToMainActivity()
-            finish() // Opsional: menutup activity saat ini jika diperlukan
-        }, 1800) // 5000 milliseconds = 5 detik
+            finish()
+        }, 1800)
     }
 
     private fun navigateToMainActivity() {

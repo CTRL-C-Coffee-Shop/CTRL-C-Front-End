@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ctrl_c.R
 import com.example.ctrl_c.model.response.voucher.VouchersItem
 
@@ -25,7 +26,7 @@ class VoucherAdapter: RecyclerView.Adapter<VoucherAdapter.ListViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_row_transaction, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_vouchers_list, parent, false)
         return ListViewHolder(view)
     }
 
@@ -38,6 +39,9 @@ class VoucherAdapter: RecyclerView.Adapter<VoucherAdapter.ListViewHolder>()  {
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(currentList[holder.adapterPosition])
         }
+        Glide.with(holder.itemView.context)
+            .load(R.drawable.voucher2)
+            .into(holder.tvVoucherImage)
     }
 
     @SuppressLint("NotifyDataSetChanged")

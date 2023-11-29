@@ -12,7 +12,9 @@
         android:id="@+id/iv_voucher_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/light_gray" />
+        android:src="@drawable/voucher2"
+        android:scaleType="center"
+        />
 
     <TextView
         android:id="@+id/tv_voucher_name"
@@ -21,6 +23,10 @@
         android:layout_marginStart="@dimen/spacing_6"
         android:layout_marginTop="@dimen/spacing_6"
         android:text="@string/voucher_name"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/matcha_green"
+
+        />
 
 </androidx.cardview.widget.CardView>

@@ -1,8 +1,8 @@
 package com.example.ctrl_c.ui.voucher
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ctrl_c.databinding.ActivityVoucherDetailBinding
 import com.example.ctrl_c.model.response.voucher.VouchersItem
 import com.example.ctrl_c.ui.order.checkout.CheckoutActivity
@@ -25,9 +25,10 @@ class VoucherDetailActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.apply {
-            btnUseVoucher.setOnClickListener{
+            btnUseVoucher.setOnClickListener {
                 val intent = Intent(this@VoucherDetailActivity, CheckoutActivity::class.java)
                 intent.putExtra("idVoucher", idVoucher)
+                intent.putExtra("discount",discountPercentage)
                 startActivity(intent)
             }
         }
@@ -41,10 +42,6 @@ class VoucherDetailActivity : AppCompatActivity() {
                 tvDetailedVoucherDesc.text = voucher.description
                 idVoucher = voucher.id
                 discountPercentage = voucher.discount
-//                Glide.with(this@VoucherDetailActivity)
-//                    .load(voucher.url)
-//                    .error(R.drawable.default_menu)
-//                    .into(ivDetailedVoucherImage)
             }
         }
     }

@@ -14,6 +14,7 @@ import com.example.ctrl_c.helper.LoadingHandler
 import com.example.ctrl_c.model.result.Result
 import com.example.ctrl_c.ui.main.MainActivity
 import com.example.ctrl_c.ui.order.checkout.adapter.OrderCheckoutAdapter
+import com.example.ctrl_c.ui.voucher.VoucherListActivity
 import com.example.ctrl_c.viewmodel.cart.CartViewModel
 
 
@@ -23,7 +24,6 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private lateinit var factory: ViewModelFactory
     private val viewModel: CartViewModel by viewModels { factory }
     private val adapter = OrderCheckoutAdapter()
-    private var discount = 0
     private var totalPrice = 0
     private var isRefreshing = false
     private var storeLocation: Int = 1
@@ -34,6 +34,9 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private var productSugarLvlList = mutableListOf<Int>()
 
     private var voucherId = 0
+    private var discountPercentage = 0
+    private var priceAfterDiscount = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
@@ -44,6 +47,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         setupGetAllOrdersAPI()
         initRecyclerView()
         getStoreLocationFromIntent()
+        getVoucher()
         setupAction()
         setTotalPrice(totalPrice)
     }
@@ -55,7 +59,13 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             }
             buttonCreateOrder.setOnClickListener {
                 createOrder()
+                removeAllItemsFromCart()
+                navigateToMainActivity()
             }
+            voucherButton.setOnClickListener{
+                navigateToVoucherActivity()
+            }
+
         }
         adapter.setOnItemClickListener(object : OrderCheckoutAdapter.OnItemClickListener {
             override fun onDeleteClick(position: Int) {
@@ -66,11 +76,17 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         })
     }
 
+    private fun navigateToMainActivity(){
+        val intent = Intent(this@CheckoutActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
     private fun swipeRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             isRefreshing = true
             setupGetAllOrdersAPI()
             setTotalPrice(0)
+            priceAfterDiscount= 0
         }
     }
 
@@ -106,9 +122,14 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun getVoucher() {
-        voucherId = intent.getIntExtra("idVoucher", 0)
+        voucherId = intent.getIntExtra("idVoucher", 1)
+        discountPercentage = intent.getIntExtra("discount",10)
     }
 
+    private fun navigateToVoucherActivity(){
+        val intent = Intent(this@CheckoutActivity, VoucherListActivity::class.java)
+        startActivity(intent)
+    }
     private fun removeAllItemsFromCart() {
         val pref = UserPreference(this)
         val userId = pref.getUserId()
@@ -160,15 +181,16 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                         loadingHandler(false)
                         adapter.setCartData(result.data.cart)
                         totalPrice = adapter.totalPrice
-                        setTotalPrice(totalPrice)
+                        priceAfterDiscount = adapter.totalPrice - (totalPrice * discountPercentage/100)
+                        setTotalPrice(priceAfterDiscount)
 
                         val cartItems = result.data.cart
                         cartItems.forEach { cartItem ->
                             productIdList.add(cartItem.product.id)
                             productAmountList.add(cartItem.amount)
-                            productWarmthList.add(cartItem.warmth.toInt())
-                            productSizeList.add(cartItem.size.toInt())
-                            productSugarLvlList.add(cartItem.sugarLvl.toInt())
+                            productWarmthList.add(cartItem.warmth)
+                            productSizeList.add(cartItem.size)
+                            productSugarLvlList.add(cartItem.sugarLvl)
                         }
 
                     }
@@ -177,10 +199,10 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         }
     }
 
-    private fun setTotalPrice(totalPrice: Int) {
+    private fun setTotalPrice(priceAfterDiscount: Int) {
         binding.apply {
-            textView18.text = "Rp. ${totalPrice}.000"
-            tvTotalPrice.text = "Rp. ${totalPrice}.000"
+            textView18.text = "Rp. ${totalPrice}.000 \n - Rp. ${(totalPrice * discountPercentage/100)}.000"
+            tvTotalPrice.text = "Rp. ${priceAfterDiscount}.000"
         }
     }
 
@@ -200,7 +222,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         viewModel.createOrder(
             userId,
             storeLocation,
-            1,
+            voucherId,
             totalPrice,
             productIdList,
             productAmountList,

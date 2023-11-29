@@ -25,22 +25,34 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     private val viewModel: CartViewModel by viewModels { factory }
     private val adapter = OrderCheckoutAdapter()
     private var discount = 0
+    private var totalPrice = 0
+    private var isRefreshing = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        swipeRefresh()
         setupViewModel()
-        initRecyclerView()
         setupGetAllOrdersAPI()
+        initRecyclerView()
         setupAction()
+        setTotalPrice(totalPrice)
     }
 
     private fun setupAction() {
         binding.apply {
-            btnRemoveAllProductsFromCart.setOnClickListener{
+            btnRemoveAllProductsFromCart.setOnClickListener {
                 removeAllItemsFromCart()
             }
+        }
+    }
+
+    private fun swipeRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            isRefreshing = true
+            setupGetAllOrdersAPI()
+            setTotalPrice(0)
         }
     }
 
@@ -72,6 +84,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                 }
             }
         }
+        adapter.clearCartData()
     }
 
     private fun setupGetAllOrdersAPI() {
@@ -94,14 +107,15 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Success -> {
                         loadingHandler(false)
                         adapter.setCartData(result.data.cart)
-                        setTotalPrice(adapter.totalPrice)
+                        totalPrice = adapter.totalPrice
+                        setTotalPrice(totalPrice)
                     }
                 }
             }
         }
     }
 
-    private fun setTotalPrice(totalPrice: Int){
+    private fun setTotalPrice(totalPrice: Int) {
         binding.apply {
             textView18.text = "Rp. ${totalPrice}.000"
             tvTotalPrice.text = "Rp. ${totalPrice}.000"
@@ -130,6 +144,10 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             binding.loadingAnimation.visibility = View.VISIBLE
         } else {
             binding.loadingAnimation.visibility = View.GONE
+            if (isRefreshing) {
+                binding.swipeRefreshLayout.isRefreshing = false
+                isRefreshing = false
+            }
         }
     }
 

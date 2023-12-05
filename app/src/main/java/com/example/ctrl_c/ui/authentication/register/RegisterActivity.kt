@@ -38,6 +38,12 @@ class RegisterActivity : AppCompatActivity(), LoadingHandler {
             val fullname = binding.etFullname.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+
+            if (fullname.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             viewModel.register(fullname, email, password, 0).observe(this) {
                 it?.let { result ->
                     when (result) {
@@ -70,7 +76,6 @@ class RegisterActivity : AppCompatActivity(), LoadingHandler {
             }
 
         }
-
 
         binding.btnLogin.setOnClickListener {
             navigateToSignInActivity()

@@ -133,6 +133,7 @@ class LoginActivity : AppCompatActivity(), LoadingHandler {
         val userId = data.userId
         pref.saveUserId(userId)
     }
+
     private fun navigateToRegisterActivity() {
         //intent to Register activity.
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)

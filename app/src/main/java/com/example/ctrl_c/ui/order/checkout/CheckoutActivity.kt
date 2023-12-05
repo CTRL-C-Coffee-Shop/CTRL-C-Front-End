@@ -76,7 +76,6 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         })
     }
 
-
     private fun navigateToPaymentAnimation() {
         val intent = Intent(this@CheckoutActivity, PaymentActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -124,8 +123,8 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun getVoucher() {
-        voucherId = intent.getIntExtra("idVoucher", 0)
-        discountPercentage = intent.getIntExtra("discount", 0)
+        voucherId = intent.getIntExtra("idVoucher", 1)
+        discountPercentage = intent.getIntExtra("discount", 1)
     }
 
     private fun navigateToVoucherActivity() {

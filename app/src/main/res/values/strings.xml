@@ -214,7 +214,7 @@
     <string name="price_payment_detail_desc">Rp 50.000</string>
     <string name="total_payment_title">Total Payment</string>
     <string name="total_payment_desc">Rp 50.000</string>
-    <string name="continue_checkout_button">Continue</string>
+    <string name="continue_checkout_button">Pay</string>
     <string name="order_name_checkout">Arabica</string>
     <string name="order_desc_checkout">"Large\nLess Ice "</string>
     <string name="order_price_checkout">Rp 50.000</string>

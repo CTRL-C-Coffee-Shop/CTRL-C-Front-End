@@ -60,8 +60,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             }
             buttonCreateOrder.setOnClickListener {
                 createOrder()
-                removeAllItemsFromCart()
-                navigateToPaymentAnimation()
+
             }
             voucherButton.setOnClickListener {
                 navigateToVoucherActivity()
@@ -125,8 +124,8 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
     }
 
     private fun getVoucher() {
-        voucherId = intent.getIntExtra("idVoucher", 1)
-        discountPercentage = intent.getIntExtra("discount", 10)
+        voucherId = intent.getIntExtra("idVoucher", 0)
+        discountPercentage = intent.getIntExtra("discount", 0)
     }
 
     private fun navigateToVoucherActivity() {
@@ -229,7 +228,7 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
             userId,
             storeLocation,
             voucherId,
-            totalPrice,
+            priceAfterDiscount,
             productIdList,
             productAmountList,
             productWarmthList,
@@ -245,15 +244,17 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     is Result.Error -> {
                         loadingHandler(false)
                         Toast.makeText(
-                            this, "Failed to create order", Toast.LENGTH_SHORT
+                            this, "Payment Failed!", Toast.LENGTH_SHORT
                         ).show()
                     }
 
                     is Result.Success -> {
                         loadingHandler(false)
                         Toast.makeText(
-                            this, "Success creating Order! ", Toast.LENGTH_SHORT
+                            this, "Payment Success! ", Toast.LENGTH_SHORT
                         ).show()
+                        removeAllItemsFromCart()
+                        navigateToPaymentAnimation()
                     }
                 }
             }

@@ -3,8 +3,8 @@ package com.example.ctrl_c.helper
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
@@ -37,13 +37,13 @@ class ReminderWorker(context: Context, workerParams: WorkerParameters) :
         val lastActiveTime = sharedPreferences.getLong(
             "lastActiveTime",
             0L
-        ) // Get last active time from SharedPreferences
+        )
 
         val currentTime = System.currentTimeMillis()
         val elapsedTime = currentTime - lastActiveTime
+        Log.d("ini waktunyaaaa", "isInactiveFor2Minutes: $elapsedTime ")
+        return elapsedTime >= (0)
 
-        // Check if elapsed time is more than 2 seconds (2,000 milliseconds)
-        return elapsedTime >= (1 * 1000 * 60)
     }
 
     private fun showNotification(title: String, description: String?): Result {
@@ -51,7 +51,7 @@ class ReminderWorker(context: Context, workerParams: WorkerParameters) :
         val notificationManager =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
-            .setSmallIcon(R.drawable.baseline_notifications_24)
+            .setSmallIcon(R.drawable.application_logo)
             .setContentTitle(title)
             .setContentText(description)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -66,5 +66,4 @@ class ReminderWorker(context: Context, workerParams: WorkerParameters) :
         notificationManager.notify(NOTIFICATION_ID, notification.build())
         return resultStatus as Result
     }
-
 }

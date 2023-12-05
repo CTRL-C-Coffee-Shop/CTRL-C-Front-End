@@ -40,17 +40,17 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         updateLastActiveTime(applicationContext)
-        scheduleInactivityCheck() // Memindahkan pemanggilan ke onDestroy
+        scheduleInactivityCheck()
     }
 
     private fun scheduleInactivityCheck() {
         val constraints = Constraints.Builder()
-            .setRequiresDeviceIdle(true) // Set to true if you want the task to run when the device is idle
+            .setRequiresDeviceIdle(false)
             .build()
 
         val inactivityWork = PeriodicWorkRequestBuilder<ReminderWorker>(
-            repeatInterval = 1, // Repeat interval in minutes
-            TimeUnit.SECONDS
+            repeatInterval = 30,
+            TimeUnit.MINUTES
         )
             .setConstraints(constraints)
             .build()

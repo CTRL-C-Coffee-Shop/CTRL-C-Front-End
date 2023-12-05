@@ -1,12 +1,15 @@
 package com.example.ctrl_c.ui.order.checkout
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ctrl_c.R
 import com.example.ctrl_c.data.local.UserPreference
 import com.example.ctrl_c.databinding.ActivityCheckoutBinding
 import com.example.ctrl_c.factory.ViewModelFactory
@@ -51,9 +54,12 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         getVoucher()
         setupAction()
         setTotalPrice(totalPrice)
+
     }
 
     private fun setupAction() {
+
+
         binding.apply {
             btnRemoveAllProductsFromCart.setOnClickListener {
                 removeAllItemsFromCart()
@@ -199,7 +205,9 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
                     }
                 }
             }
+            disableButton()
         }
+
     }
 
     private fun setTotalPrice(priceAfterDiscount: Int) {
@@ -272,6 +280,17 @@ class CheckoutActivity : AppCompatActivity(), LoadingHandler {
         factory = ViewModelFactory.getInstance(binding.root.context)
     }
 
+    private fun disableButton() {
+        if (adapter.itemCount == 0) { // Mengecek apakah daftar pembelian kosong
+            binding.buttonCreateOrder.isEnabled = false
+            val greyColor = ContextCompat.getColor(this, android.R.color.darker_gray)
+            binding.buttonCreateOrder.backgroundTintList = ColorStateList.valueOf(greyColor)
+        } else {
+            binding.buttonCreateOrder.isEnabled = true
+            val originalColor = ContextCompat.getColor(this, R.color.light_brown)
+            binding.buttonCreateOrder.backgroundTintList = ColorStateList.valueOf(originalColor)
+        }
+    }
     override fun loadingHandler(isLoading: Boolean) {
         if (isLoading) {
             binding.loadingAnimation.visibility = View.VISIBLE

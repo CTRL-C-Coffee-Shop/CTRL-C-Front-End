@@ -42,7 +42,7 @@ class ReminderWorker(context: Context, workerParams: WorkerParameters) :
         val currentTime = System.currentTimeMillis()
         val elapsedTime = currentTime - lastActiveTime
         Log.d("ini waktunyaaaa", "isInactiveFor2Minutes: $elapsedTime ")
-        return elapsedTime >= (0)
+        return elapsedTime >= (10 * 1000 * 60)
 
     }
 

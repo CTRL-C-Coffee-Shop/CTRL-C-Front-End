@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun scheduleInactivityCheck() {
         val constraints = Constraints.Builder()
-            .setRequiresDeviceIdle(false)
+            .setRequiresDeviceIdle(true)
             .build()
 
         val inactivityWork = PeriodicWorkRequestBuilder<ReminderWorker>(
@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         WorkManager.getInstance(this).enqueue(inactivityWork)
     }
+
     fun updateLastActiveTime(context: Context) {
         val sharedPreferences = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
         val currentTime = System.currentTimeMillis()
